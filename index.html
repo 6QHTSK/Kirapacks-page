@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- import Vue before Element -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@v2.6.11/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+  <!-- import vue javascript-->
+  <script src="songlist.js"></script>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/theme-chalk/index.css" rel="stylesheet">
+  <title>Kirapacks 索引小站</title>
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <el-container>
+      <div style="width: 100%;height: 100%;">
+        <el-backtop :bottom="60"></el-backtop>
+      </div>
+      <el-header>Kirapacks 索引小站</el-header>
+      <el-main>
+        <el-tabs tab-position='left'>
+          <el-tab-pane label="主页">
+            <indexpage></indexpage>
+          </el-tab-pane>
+          <el-tab-pane label="Kirapacks 合集">
+            <kirapack :songlist="songlist"></kirapack>
+          </el-tab-pane>
+        </el-tabs>
+      </el-main>
+    </el-container>
+  </div>
+</body>
+
+</html>
+<script src="main.js"></script>
+<style>
+  .el-header {
+    background-color: #409EFF;
+    color: #FFFFFF;
+    text-align: left;
+    line-height: 60px;
+    font-weight: bold;
+    font-size: large;
+  }
+</style>
