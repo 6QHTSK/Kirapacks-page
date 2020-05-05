@@ -1,0 +1,69 @@
+<div class="sortmet">
+    <el-popover placement="bottom" trigger="click" width=420>
+        <el-button :type=" sortkey == 'id' ? 'primary' : '' " @click="setsortkey('id')" size="mini">
+            ID
+            <i :class="sortkey=='id'? seticon():''"></i>
+        </el-button>
+        <el-button :type="sortkey=='songname'?'primary':''" @click="setsortkey('songname')" size="mini">
+            曲名
+            <i :class="sortkey=='songname'? seticon():''"></i>
+        </el-button>
+        <el-button :type="sortkey=='maxdiff'?'primary':''" @click="setsortkey('maxdiff')" size="mini">
+            难度
+            <i :class="sortkey=='maxdiff'? seticon():''"></i>
+        </el-button>
+        <el-button :type="sortkey=='time'?'primary':''" @click="setsortkey('time')" size="mini">
+            时间
+            <i :class="sortkey=='time'? seticon():''"></i>
+        </el-button>
+        <el-button :type="sortkey=='bpm'?'primary':''" @click="setsortkey('bpm')" size="mini">
+            BPM
+            <i :class="sortkey=='bpm'? seticon():''"></i>
+        </el-button>
+        <el-button slot="reference" icon="el-icon-s-operation">
+        </el-button>
+        <el-popover placement="bottom" trigger="click" width=200>
+            <el-row class="tags">
+                <el-checkbox-group v-model="SongType" text-color="#409EFF" fill="#ECF5FF" size="mini">
+                    <el-checkbox-button label="Anime">Anime</el-checkbox-button>
+                    <el-checkbox-button label="Game">Game</el-checkbox-button>
+                    <el-checkbox-button label="NoAG">其它</el-checkbox-button>
+                </el-checkbox-group>
+            </el-row>
+            <p></p>
+            <el-row class="tags">
+                <el-checkbox-group v-model="SongType" text-color="#E6A23C" fill="#FDF6EC" size="mini">
+                    <el-checkbox-button label="Video">含视频</el-checkbox-button>
+                    <el-checkbox-button label="Script">含脚本</el-checkbox-button>
+                    <el-checkbox-button label="NoVS">其它</el-checkbox-button>
+                </el-checkbox-group>
+            </el-row>
+            <p></p>
+            <el-row class="tags">
+                <el-checkbox-group v-model="SongType" text-color="#67C23A" fill="#F0F9EB" size="mini">
+                    <el-checkbox-button label="Finished">已完成</el-checkbox-button>
+                    <el-checkbox-button label="Unfinished">未完成</el-checkbox-button>
+                </el-checkbox-group>
+            </el-row>
+            <p></p>
+            <el-row class="tags">
+                <el-checkbox-group v-model="SongType" text-color="#F56C6C" fill="#FEF0F0" size="mini">
+                    <el-checkbox-button label="FULL">FULL</el-checkbox-button>
+                    <el-checkbox-button label="Short">短版</el-checkbox-button>
+                </el-checkbox-group>
+            </el-row>
+            <p></p>
+            <el-row class="tags">
+                <el-checkbox-group v-model="SongType" text-color="#F56C6C" fill="#FEF0F0" size="mini">
+                    <el-checkbox-button label="HighDiff">高难度</el-checkbox-button>
+                    <el-checkbox-button label="LowDiff">一般</el-checkbox-button>
+                </el-checkbox-group>
+            </el-row>
+            <div>
+            </div>
+            <el-button slot="reference" size="mini">
+                标签
+            </el-button>
+        </el-popover>
+    </el-popover>
+</div>

@@ -1,0 +1,54 @@
+<div>
+    <el-table :data="flitersong" stripe style="width:100%">
+        <el-table-column prop="id" label="ID" width="70"></el-table-column>
+        <el-table-column label="歌曲名" min-width="180">
+            <template slot-scope="scope">
+                <el-tag v-if="scope.row.time>=160" size="mini" type="danger">FULL</el-tag>
+                <span>{{scope.row.songname}}</span>
+            </template>
+        </el-table-column>
+        <el-table-column prop="artist" label="歌手/作者" min-width="180"></el-table-column>
+        <el-table-column label="时长" width="70">
+            <template slot-scope="scope">
+                <span v-if="scope.row.time%60>=10">{{Math.floor(scope.row.time/60)}}:{{scope.row.time%60}} </span>
+                <span v-else>{{Math.floor(scope.row.time/60)}}:0{{scope.row.time%60}} </span>
+            </template>
+        </el-table-column>
+        <el-table-column label="BPM" width="80">
+            <template slot-scope="scope">
+                <span v-if="scope.row.bpm[0]==scope.row.bpm[1]">{{scope.row.bpm[0]}}</span>
+                <span v-else>{{scope.row.bpm[0]}}~{{scope.row.bpm[1]}}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="EZ" width="50">
+            <template slot-scope="scope">
+                <div v-if="scope.row.diff[0]!=-1" style="color:#67C23A">{{scope.row.diff[0]}}</div>
+            </template>
+        </el-table-column>
+        <el-table-column label="NM" width="50">
+            <template slot-scope="scope">
+                <div v-if="scope.row.diff[1]!=-1" style="color:#409EFF">{{scope.row.diff[1]}}</div>
+            </template>
+        </el-table-column>
+        <el-table-column label="HD" width="50">
+            <template slot-scope="scope">
+                <div v-if="scope.row.diff[2]!=-1" style="color:#E6A23C">{{scope.row.diff[2]}}</div>
+            </template>
+        </el-table-column>
+        <el-table-column label="EX" width="50">
+            <template slot-scope="scope">
+                <div v-if="scope.row.diff[3]!=-1" style="color:#F56C6C">{{scope.row.diff[3]}}</div>
+            </template>
+        </el-table-column>
+        <el-table-column label="SP" width="50">
+            <template slot-scope="scope">
+                <div v-if="scope.row.diff[4]!=-1" style="color:rgb(236, 65, 213)">{{scope.row.diff[4]}}</div>
+            </template>
+        </el-table-column>
+        <el-table-column label="" width="80">
+            <template slot-scope="scope">
+                <listitem :item="scope.row"></listitem>
+            </template>
+        </el-table-column>
+    </el-table>
+</div>

@@ -1,0 +1,8 @@
+<div>
+    <el-tag size="mini">{{item.tags[0]}}</el-tag>
+    <el-tag v-if="item.maxdiff>=28" size="mini" type="danger">高难度</el-tag>
+    <el-tag v-if="item.diff[0]!='-1' && item.diff[1]!='-1' && item.diff[2]!='-1'" size="mini" type="success">已完成</el-tag>
+    <el-tag v-if="item.time>=160" size="mini" type="danger">FULL</el-tag>
+    <el-tag v-if="item.video" size="mini" type="warning">含视频</el-tag>
+    <el-tag v-if="item.script" size="mini" type="warning">含脚本</el-tag>
+  </div>

@@ -1,0 +1,53 @@
+<div>
+  <songdetail :item="item" ref="songdetail"></songdetail> 
+  <div @click="cardclick">
+    <el-card :body-style="{ padding: '5px'}" shadow="hover">
+      <!--此部分生成头部的id和难度-->
+      <div class="topcard">
+        <el-col :span="5">
+          <el-tag type="info">{{item.id}}</el-tag>
+        </el-col>
+        <el-col :span="19">
+          <div class="difficulty" v-for="i of 5">
+            <div v-if="item.diff[5-i]!='-1'">
+              <el-tag :class="diffname[5-i]" width="150px">{{item.diff[5-i]}} </el-tag>
+            </div>
+          </div>
+        </el-col>
+      </div>
+      <!--此部分生成图片，854*480-->
+      <div class="imagebox">
+        <el-image :src="imgsrc()" class="image">
+          <div slot="error" class="imagefail">
+            <i class="el-icon-picture-outline"></i>
+          </div>
+          <div slot="placeholder" class="imagefail">
+            <i class="el-icon-picture-outline"></i>
+          </div>
+        </el-image>
+      </div>
+      <!--此部分为歌曲的具体信息，包括出处、名字、作者、和一些meta信息-->
+      <div style="padding:10px;">
+        <div class="metadata">{{item.origin}}</div>
+        <div class="songname">{{item.songname}}</div>
+        <div class="artist">{{item.artist}}</div>
+        <div class="metadata">
+          <span v-if="item.time%60>=10">{{Math.floor(item.time/60)}}:{{item.time%60}} </span>
+          <span v-else>{{Math.floor(item.time/60)}}:0{{item.time%60}} </span>
+          <span v-if="item.bpm[0]==item.bpm[1]">BPM: {{item.bpm[0]}}</span>
+          <span v-else>BPM: {{item.bpm[0]}}~{{item.bpm[1]}}</span>
+        </div>
+        <!--此部分生成歌曲的tag，可以通过标签栏进行筛选-->
+        <div>
+          <el-tag size="mini">{{item.tags[0]}}</el-tag>
+          <el-tag v-if="item.maxdiff>=28" size="mini" type="danger">高难度</el-tag>
+          <el-tag v-if="item.diff[0]!='-1' && item.diff[1]!='-1' && item.diff[2]!='-1'" size="mini" type="success">已完成
+          </el-tag>
+          <el-tag v-if="item.time>=160" size="mini" type="danger">FULL</el-tag>
+          <el-tag v-if="item.video" size="mini" type="warning">含视频</el-tag>
+          <el-tag v-if="item.script" size="mini" type="warning">含脚本</el-tag>
+        </div>
+      </div>
+    </el-card>
+  </div>
+</div>

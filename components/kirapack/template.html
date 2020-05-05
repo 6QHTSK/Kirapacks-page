@@ -1,0 +1,18 @@
+<div>
+    <el-row>
+        <el-col :span="12">
+            <el-switch v-model="islist" active-color="#67C23A" inactive-color="#409EFF" active-text="列表"
+                inactive-text="卡片">
+            </el-switch>
+        </el-col>
+        <el-col :span="12">
+            <selector @changekey="changekey" @changemethod="changemethod" @changetype="changetype"></selector>
+        </el-col>
+    </el-row>
+    <list v-if="islist" :flitersong="flitersong"></list>
+    <el-row v-else :gutter="20" v-for="i in row" :key="i">
+        <el-col :span="24/col" v-for="j in col" :key="j" class="cardclass">
+            <song-card v-if="(i-1)*col+j-1 < flitersong.length" :item="flitersong[(i-1)*col+j-1]"></song-card>
+        </el-col>
+    </el-row>
+</div>

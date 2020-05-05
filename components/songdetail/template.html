@@ -1,0 +1,68 @@
+<el-dialog :title="detailcardtitle()" :visible.sync="SeeDetail" :before-close="cardestroy" width="60%" top="3vh">
+    <div>
+        <div class="imagebox">
+            <el-image :src="imgsrc()" fit="fill" :preview-src-list="[imgsrc()]">
+                <div slot="error" class="imagefail">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+                <div slot="placeholder" class="imagefail">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+        </div>
+    </div>
+    <div>
+        <el-col :span="12" style="text-align:center;">
+            <p style="font-size: small; color: rgb(100, 100, 100);">{{origin()}}</p>
+            <audio controls id="music">
+                <source :src="audiosrc()" type="audio/mpeg">
+            </audio>
+            <p><tags :item="item"></tags></p>
+        </el-col>
+        <el-col :span="12" style="padding-top: 10px;">
+            <el-table :data="songmeta()" style="width: 100%" :show-header="false" size="small">
+                <el-table-column label="" align="center" min-width="95">
+                    <template slot-scope="scope">
+                        <span style="font-weight: bold;">{{scope.row.title}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="" align="center" min-width="60">
+                    <template slot-scope="scope">
+                        <span style="color:#67C23A">{{scope.row.easy}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="" align="center" min-width="60">
+                    <template slot-scope="scope">
+                        <span style="color:#409EFF">{{scope.row.normal}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="" align="center" min-width="60">
+                    <template slot-scope="scope">
+                        <span style="color:#E6A23C">{{scope.row.hard}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="" align="center" min-width="60">
+                    <template slot-scope="scope">
+                        <span style="color:#F56C6C">{{scope.row.expert}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="" align="center" min-width="60">
+                    <template slot-scope="scope">
+                        <span style="color:rgb(236, 65, 213)">{{scope.row.special}}</span>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-col>
+    </div>
+    <div slot = "footer" style="padding-top: 100px;">
+        <el-tooltip class="item" effect="dark" content="在 Bestdori 上查看谱面最高难度" placement="top">
+            <el-button @click="openbdlink()" size="small">Bestdori</el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="在 PlayerBanGround 上游玩谱面最高难度" placement="top">
+            <el-button @click="openpbbblink()" size="small">PlayerBanGround</el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="下载全难度 Kirapack" placement="top">
+            <el-button @click="openkirapack()" size="small">Kirapack</el-button>
+        </el-tooltip>
+    </div>
+</el-dialog>

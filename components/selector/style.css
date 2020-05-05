@@ -1,0 +1,13 @@
+.tags{
+    text-align: center;
+  }
+  .tag{
+    width:80px;
+  }
+  .sortmet{
+    text-align: right;
+    padding-bottom : 5px;
+  }
+  .selectbutton{
+    width:120px;
+  }
