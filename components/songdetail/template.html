@@ -14,7 +14,7 @@
     <div>
         <el-col :span="12" style="text-align:center;">
             <p style="font-size: small; color: rgb(100, 100, 100);">{{origin()}}</p>
-            <audio controls id="music">
+            <audio controls :id="musictag">
                 <source :src="audiosrc()" type="audio/mpeg">
             </audio>
             <p><tags :item="item"></tags></p>

@@ -2,7 +2,8 @@ module.exports = {
     props: ["item"],
     data: function () {
         return {
-            SeeDetail: false
+            SeeDetail: false,
+            musictag: this.item.songname
         }
     },
     components:{
@@ -16,7 +17,7 @@ module.exports = {
             return this.item.artist + '-' + this.item.songname
         },
         cardestroy(e) {
-            var player=document.getElementById("music");
+            var player=document.getElementById(this.item.songname);
             player.pause();
             this.SeeDetail = false;
         },
