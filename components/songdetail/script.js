@@ -7,7 +7,8 @@ module.exports = {
         }
     },
     components:{
-        'tags' : httpVueLoader('.\\components\\tags\\tags.vue')
+        'tags' : httpVueLoader('.\\components\\tags\\tags.vue'),
+        'bilibilicard' : httpVueLoader('.\\components\\bilibilicard\\bilibilicard.vue')
     },
     methods: {
         imgsrc(e) {
@@ -24,13 +25,39 @@ module.exports = {
         cardclick(e) {
             this.SeeDetail = true;
         },
+        openbililink(e){
+            this.SeeDetail = false;
+            if(this.item.bilisrc==undefined)
+            {
+                alert("本曲目暂未上传到bilibili");
+            }
+            else
+            {
+                window.open(this.item.bilisrc, "_blank");
+            }
+        },
         openbdlink(e) {
             this.SeeDetail = false;
-            window.open('https://bestdori.com/community/charts/' + this.item.id, "_blank");
+            this.SeeDetail = false;
+            if(this.item.newid==undefined)
+            {
+                window.open('https://bestdori.com/community/charts/' + this.item.id, "_blank");
+            }
+            else
+            {
+                window.open('https://bestdori.com/community/charts/' + this.item.newid, "_blank");
+            }
         },
         openpbbblink(e) {
             this.SeeDetail = false;
-            window.open('https://player.banground.fun/?id=' + this.item.id + '&type=community&autoload=true', "_blank")
+            if(this.item.bdsrc==undefined)
+            {
+                window.open('https://player.banground.fun/?id=' + this.item.id + '&type=community&autoload=true', "_blank")
+            }
+            else
+            {
+                window.open('https://player.banground.fun/?id=' + this.item.newid + '&type=community&autoload=true', "_blank")
+            }
         },
         openkirapack(e) {
             this.SeeDetail = false;
