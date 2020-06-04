@@ -8,7 +8,8 @@ var vm = new Vue({
   },
   components: {
     'kirapack': 'url:.\\components\\kirapack\\kirapack.vue',
-    'indexpage': 'url:.\\components\\index\\index.vue'
+    'indexpage': 'url:.\\components\\index\\index.vue',
+    'diffanalysis': 'url:.\\components\\diffanalysis\\diffanalysis.vue'
   },
   template: ``
 });

@@ -7,6 +7,7 @@
   <!-- import JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <!-- import vue javascript-->
   <script src="songlist.js"></script>
   <meta charset="UTF-8">
@@ -29,6 +30,9 @@
           </el-tab-pane>
           <el-tab-pane label="Kirapacks 合集">
             <kirapack :songlist="songlist"></kirapack>
+          </el-tab-pane>
+          <el-tab-pane label="谱面分析">
+            <diffanalysis></diffanalysis>
           </el-tab-pane>
         </el-tabs>
       </el-main>

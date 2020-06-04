@@ -1,0 +1,104 @@
+<div>
+    <el-alert
+        type="info"
+        title="Beta 1.0 版，运算结果仅供参考，不代表曲目的最真实难度。"
+        description="Expert难度运算结果可能与真实难度差异较大。请先拖动滑块至正确的分级，输入正常可识别的bestdori自制谱面，然后点分析，即可得到分析结果，谱面难度的精确度一般为±1级"></el-alert>
+    <el-input type="textarea" :rows="10" v-model="inputstr" placeholder="请输入bestdori谱面" @input="inputchange($event)">
+    </el-input>
+    <div style="padding:15px">
+        <el-row :gutter="10">
+            <el-col :span="5">
+                <el-tooltip class="item" effect="dark" content="谱面分级" placement="bottom">
+                <el-slider v-model="diffid" :step="1" :max="3" :min="0" :format-tooltip="showdiffname" show-stops></el-slider>
+                </el-tooltip>
+            </el-col>
+            <el-col :span="18"><p></p></el-col>
+            <el-col :span="1">
+                <el-button @click="analysis">分析</el-button>
+            </el-col>
+        </el-row>
+    </div>
+    <el-divider v-if="showdetail">谱面分析</el-divider>
+    <el-row :gutter="12" v-show="showdetail">
+        <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
+            <div style="padding-bottom: 10px;">
+                <el-divider>
+                    谱面难度
+                </el-divider>
+                <div style="padding-bottom: 30px;">
+                    <el-col :span="20">
+                        <div style="vertical-align: middle;padding-top:10px;">
+                            <el-progress :show-text="false" :percentage="calcpercentage()" :stroke-width="26" :color="getdiffcolor()">
+                            </el-progress>
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div style="vertical-align: middle;text-align: center;font-size: xx-large">
+                            <span>{{totalstrdiff}}</span>
+                        </div>
+                    </el-col>
+                </div>
+            </div>
+            <el-divider>详细数据</el-divider>
+            <el-row :gutter="12">
+                <el-col :span="6">
+                    <el-card :body-style="{ padding: '5px'}" shadow="hover">
+                        <div style="text-align: center;padding-bottom: 10px;">
+                            <el-divider>Time</el-divider>
+                            <span style="font-size: x-large; padding-bottom: 10px;">
+                                <span v-if="totaltimesec < 10.0">{{totaltimemin}}'0{{totaltimesec}}</span>
+                                <span v-else>{{totaltimemin}}'{{totaltimesec}}</span>
+                            </span>
+                            <el-divider>BPM</el-divider>
+                            <span style="font-size: x-large;">
+                                <span v-if="bpmlow == bpmhigh">{{bpmlow}}</span>
+                                <span v-else>{{bpmlow}}~{{bpmhigh}}</span>
+                            </span>
+                            <el-divider>Flick</el-divider>
+                            <span style="font-size: x-large;">{{totalflick}}</span>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="6">
+                    <el-card :body-style="{ padding: '5px'}" shadow="hover">
+                        <div style="text-align: center; padding-bottom: 10px;">
+                            <el-divider>Note</el-divider>
+                            <span style="font-size: x-large;">{{totalnote}}</span>
+                            <el-divider>NPS</el-divider>
+                            <span style="font-size: x-large;">{{totalnps}}</span>
+                            <el-divider>Diff</el-divider>
+                            <span style="font-size: x-large;">{{npsstrdiff}}</span>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="6">
+                    <el-card :body-style="{ padding: '5px'}" shadow="hover">
+                        <div style="text-align: center; padding-bottom: 10px;">
+                            <el-divider>Hit</el-divider>
+                            <span style="font-size: x-large;">{{totalhitnote}}</span>
+                            <el-divider>HPS</el-divider>
+                            <span style="font-size: x-large;">{{totalhps}}</span>
+                            <el-divider>Diff</el-divider>
+                            <span style="font-size: x-large;">{{hpsstrdiff}}</span>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="6">
+                    <el-card :body-style="{ padding: '5px'}" shadow="hover">
+                        <div style="text-align: center; padding-bottom: 10px;">
+                            <el-divider>MaxHPS</el-divider>
+                            <span style="font-size: x-large;">{{maxhps}}</span>
+                            <el-divider>MaxFPS</el-divider>
+                            <span style="font-size: x-large;">{{maxfps}}</span>
+                            <el-divider>MaxSPD</el-divider>
+                            <span style="font-size: x-large;">{{maxslidespeed}}</span>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </el-col>
+        <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
+            <canvas id="map"></canvas>
+        </el-col>
+    </el-row>
+</div>
