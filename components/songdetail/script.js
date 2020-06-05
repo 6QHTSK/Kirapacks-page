@@ -61,7 +61,14 @@ module.exports = {
         },
         openkirapack(e) {
             this.SeeDetail = false;
-            alert("暂不支持kirapack下载，请等待BG社区上线")
+            if(this.item.kpsrc==undefined)
+            {
+                window.open('http://coppercomplex.gitee.io/kirapack-store/' + this.item.id + '.kirapack', "_blank");
+            }
+            else
+            {
+                window.open(this.item.kpsrc, "_blank");
+            }
         },
         audiosrc(e){
             return ".\\song\\"+this.item.id+".mp3"
