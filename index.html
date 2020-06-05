@@ -7,6 +7,8 @@
   <!-- import JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
   <!-- import vue javascript-->
   <script src="songlist.js"></script>
   <meta charset="UTF-8">
@@ -23,12 +25,15 @@
       </div>
       <el-header>Kirapacks 索引小站</el-header>
       <el-main>
-        <el-tabs tab-position='left'>
-          <el-tab-pane label="主页">
+        <el-tabs tab-position='left' v-model="activename">
+          <el-tab-pane label="主页" name="A">
             <indexpage></indexpage>
           </el-tab-pane>
-          <el-tab-pane label="Kirapacks 合集">
+          <el-tab-pane label="Kirapacks 合集" name="B">
             <kirapack :songlist="songlist"></kirapack>
+          </el-tab-pane>
+          <el-tab-pane label="谱面分析" name="C">
+            <diffanalysis></diffanalysis>
           </el-tab-pane>
         </el-tabs>
       </el-main>

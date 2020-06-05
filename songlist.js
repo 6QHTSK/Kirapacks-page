@@ -9,6 +9,7 @@ function getsonglist(){
             "maxdiff": 23,
             "tags": ["Anime","已完成","恋爱小行星","ED"],
             "origin": "2020年1月《恋爱小行星》ED",
+            "bilisrc":"https://www.bilibili.com/video/BV1R7411Y71N",
             "time": 104,
             "bpm": [85,85],
             "note":[124,208,358,457,-1]
@@ -22,6 +23,7 @@ function getsonglist(){
             "maxdiff": 28,
             "tags": ["Anime","已完成","Happy Sugar life","OP","含视频"],
             "origin": "2018年7月《Happy Sugar Life》OP",
+            "bilisrc":"https://www.bilibili.com/video/BV1cE41177Ja",
             "time": 166,
             "bpm": [180,180],
             "note":[262,599,798,1314,1163],
@@ -59,12 +61,12 @@ function getsonglist(){
             "imgsrc":"Songpic\\5002.webp",
             "songname": "Jumping!!",
             "artist": "Rhodanthe※",
-            "diff": ["-1","-1","-1","21","-1"],
-            "maxdiff": 21,
+            "diff": ["-1","-1","17","25","-1"],
+            "maxdiff": 25,
             "tags": ["Anime","黄金拼图","OP"],
             "origin": "2013年7月《黄金拼图》OP",
             "time": 89,
-            "note":[-1,-1,-1,457,-1],
+            "note":[-1,-1,457,555,-1],
             "bpm": [175,175]
         },
         {
@@ -142,6 +144,7 @@ function getsonglist(){
             "maxdiff":26,
             "tags":["Anime","花舞少女","ED"],
             "origin":"2014年7月《花舞少女》第12话 ED",
+            "bilisrc":"https://www.bilibili.com/video/BV1X7411U7CJ",
             "time":89,
             "note":[-1,-1,-1,557,-1],
             "bpm":[146,146]
@@ -207,6 +210,7 @@ function getsonglist(){
             "maxdiff":26,
             "tags":["Anime","Urara迷路帖","OP"],
             "origin":"2017年1月《Urara迷路帖》OP",
+            "bilisrc":"https://www.bilibili.com/video/BV1M7411A7am",
             "time":92,
             "note":[133,301,425,607,-1],
             "bpm":[162,162],
@@ -221,6 +225,7 @@ function getsonglist(){
             "maxdiff":22,
             "tags":["Anime","时光沙漏","OP"],
             "origin":"2019年11月《时光沙漏》OP",
+            "bilisrc":"https://www.bilibili.com/video/BV1yE411G7oh",
             "time":132,
             "note":[-1,-1,-1,558,-1],
             "bpm":[84,84]
@@ -247,6 +252,7 @@ function getsonglist(){
             "maxdiff":25,
             "tags":["Game","崩坏3","动画短片"],
             "origin":"游戏《崩坏3》天穹流星动画短片",
+            "bilisrc":"https://www.bilibili.com/video/BV1654y1D7vk",
             "time":100,
             "bpm":[76,76],
             "note":[85,263,438,499,-1]
@@ -300,6 +306,7 @@ function getsonglist(){
             "maxdiff":27,
             "tags":["Anime","Re:STAGE! Dream Days","插曲"],
             "origin":"2019年7月《Re:STAGE! Dream Days》第5话插曲",
+            "bilisrc":"https://www.bilibili.com/video/BV1oE411G7mW",
             "time":242,
             "note":[-1,-1,-1,1756,-1],
             "bpm":[182,182]
@@ -327,6 +334,7 @@ function getsonglist(){
             "maxdiff":24,
             "tags":["Anime","黄金拼图 Pretty Days","OP"],
             "origin":"2016年11月《黄金拼图 Pretty Days》OP",
+            "bilisrc":"https://www.bilibili.com/video/BV1Q7411U7Ay",
             "time":104,
             "note":[-1,-1,-1,616,-1],
             "bpm":[182,182]
@@ -340,6 +348,7 @@ function getsonglist(){
             "maxdiff":23,
             "tags":["Anime","Comic Girls","ED"],
             "origin":"2018年4月《Comic Girls》ED",
+            "bilisrc":"https://www.bilibili.com/video/BV1Wa4y1i7MY",
             "time":122,
             "note":[-1,-1,-1,509,-1],
             "bpm":[94,94]
@@ -353,6 +362,7 @@ function getsonglist(){
             "maxdiff":21,
             "tags":["Anime","恋爱小行星","插曲"],
             "origin":"2020年1月《恋爱小行星》第9话插曲",
+            "bilisrc":"https://www.bilibili.com/video/BV1az4y1d7J9",
             "time":342,
             "note":[-1,-1,-1,1165,-1],
             "bpm":[70,70]
@@ -366,6 +376,7 @@ function getsonglist(){
             "maxdiff":18,
             "tags":["Anime","请问您今天要来点兔子吗？？~Sing For You~","插曲"],
             "origin":"2019年9月《点兔~Sing For You~》插曲",
+            "bilisrc":"https://www.bilibili.com/video/BV1X7411U7jR",
             "time":90,
             "note":[-1,-1,300,-1,-1],
             "bpm":[116,116]
@@ -379,6 +390,7 @@ function getsonglist(){
             "maxdiff":20,
             "tags":["Anime","恋爱小行星","ED"],
             "origin":"2020年1月《恋爱小行星》第4话ED",
+            "bilisrc":"https://www.bilibili.com/video/BV1aZ4y1p79G",
             "time":123,
             "note":[-1,-1,-1,386,-1],
             "bpm":[18,72]
@@ -392,6 +404,7 @@ function getsonglist(){
             "maxdiff":29,
             "tags":["Anime","Re:STAGE! Dream Days","插曲"],
             "origin":"2019年7月《Re:STAGE! Dream Days》第1话插曲",
+            "bilisrc":"https://www.bilibili.com/video/BV1bC4y1W7bf",
             "time":87,
             "bpm":[200,200],
             "note":[-1,-1,-1,853,-1],
@@ -473,6 +486,7 @@ function getsonglist(){
             "maxdiff":24,
             "tags":["Game","崩坏学院2","角色曲"],
             "origin":"游戏《崩坏学院2》德丽莎角色曲",
+            "bilisrc":"https://www.bilibili.com/video/BV1nZ4y1W7UL",
             "time":98,
             "bpm":[88,88],
             "note":[-1,-1,-1,409,-1],
