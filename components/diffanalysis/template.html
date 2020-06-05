@@ -12,7 +12,8 @@
                 <el-col :span="19">
                     <div style="text-align: right;">
                         <span style="width: 200px;display: inline-block;margin-right: 10px;">
-                            <el-input v-model="bestdoriid" placeholder="Bestdori社区谱面id" @input="inputchange($event)" @keyup.enter.native="getbestdorichart">
+                            <el-input v-model="bestdoriid" placeholder="Bestdori社区谱面id" @input="inputchange($event)"
+                                @keyup.enter.native="getbestdorichart">
                             </el-input>
                         </span>
                         <el-button @click="getbestdorichart">获取</el-button>
@@ -139,20 +140,27 @@
     </div>
     <div>
         <el-divider>使用说明</el-divider>
-        <div style="padding-left : 2%">
+        <div style="font-size: 13px;">
             <p>Beta 1.0.1 版，运算结果仅供参考，不代表曲目的最真实难度。</p>
             <p>请选择正确的难度分级，否则将会造成较大的误差</p>
-            <p>自定义谱面（仅支持bestdori社区谱面格式）</p>
-            <p>1. 在大输入框中输入bestdori格式的谱面</p>
-            <p>2. 拖动输入框左下角的滑块，选择您的谱面的分级：Easy/Normal/Hard/Expert，默认Expert</p>
-            <p>3. 点击分析按钮，即可得到分析结果</p>
-            <p>社区谱面：在右下角的小输入框中输入想要获取的bestdori谱面（不包括官谱），点击获取按钮，即可获得分析。</p>
-            <p>注：若想分析其它谱面，点击清空，再输入新的谱面。或者在右下角的小输入框中输入新的想分析的bestdori社区谱面</p>
             <p>量程：Easy: 5~10 Normal: 11~15 Hard: 16~21 Expert: 22~26，超出量程时显示≥或≤ 和 地板/天花板 难度</p>
             <p>警告：请选择正确的难度分级，否则将会造成较大的误差</p>
-            <p>Expert难度运算结果可能与真实难度差异较大，谱面难度的精确度一般为±1级</p>
-            <p>建模的时候忽略了锁手和卡手配置影响难度的情况，若出现上述配置一般难度会偏低2~3级（写分配手的代码量太大了，摸了，后期会加）</p>
             <p>如在使用过程中出现任何问题，联系作者</p>
         </div>
+        <el-collapse>
+            <el-collapse-item title="自定义谱面（仅支持bestdori社区谱面格式）">
+                <p>1. 在大输入框中输入bestdori格式的谱面</p>
+                <p>2. 拖动输入框左下角的滑块，选择您的谱面的分级：Easy/Normal/Hard/Expert，默认Expert</p>
+                <p>3. 点击分析按钮，即可得到分析结果</p>
+            </el-collapse-item>
+            <el-collapse-item title="社区谱面">
+                <p>在右上角的小输入框中输入想要获取的bestdori谱面（不包括官谱），点击获取按钮，即可获得分析。</p>
+            </el-collapse-item>
+            <el-collapse-item title="注">
+                <p>若想分析其它谱面，点击清空，再输入新的谱面。或者在右下角的小输入框中输入新的想分析的bestdori社区谱面</p>
+                <p>Expert难度运算结果可能与真实难度差异较大，谱面难度的精确度一般为±1级</p>
+                <p>建模的时候忽略了锁手和卡手配置影响难度的情况，若出现上述配置一般难度会偏低2~3级（写分配手的代码量太大了，摸了，后期会加）</p>
+            </el-collapse-item>
+        </el-collapse>
     </div>
 </div>
