@@ -1,12 +1,15 @@
 <div>
     <el-row>
-        <el-col :span="12">
+        <el-col :span="18">
             <el-switch v-model="islist" active-color="#67C23A" inactive-color="#409EFF" active-text="列表"
                 inactive-text="卡片">
             </el-switch>
         </el-col>
-        <el-col :span="12">
-            <selector @changekey="changekey" @changemethod="changemethod" @changetype="changetype"></selector>
+        <el-col :span="6">
+            <el-input v-model="searchtext" @input="inputchange($event)" @keyup.enter.native="searchsong">
+                <el-button slot="append" icon="el-icon-search" @click="searchsong"></el-button>
+                <selector slot="prepend" @changekey="changekey" @changemethod="changemethod" @changetype="changetype"></selector>
+            </el-input>
         </el-col>
     </el-row>
     <list v-if="islist" :flitersong="flitersong"></list>

@@ -1,3 +1,20 @@
+function search(song,searchtext){
+    searchtext = searchtext.toLowerCase()
+    if(song.songname.toLowerCase().indexOf(searchtext) >= 0){
+        return true;
+    }
+    for(let tag of song.tags){
+        if(tag.toLowerCase().indexOf(searchtext) >= 0){
+            return true;
+        }
+    }
+    for(let d of song.diff){
+        if(d.toLowerCase().indexOf(searchtext)>=0){
+            return true;
+        }
+    }
+    return false;
+}
 module.exports = {
     props: ["songlist"],
     data: function () {
@@ -8,6 +25,7 @@ module.exports = {
             col: 0,
             row: 1,
             islist: false,
+            searchtext : "",
             sortmethod: -1,//1 升序 -1 降序
             diffname: ["easy", "normal", "hard", "expert", "special"],
             SongType: ["Anime", "Game", "NoAG", "Video", "Script", "NoVS", "Finished", "Unfinished", "FULL", "Short", "HighDiff", "LowDiff"]
@@ -31,6 +49,9 @@ module.exports = {
             this.SongType = p;
             this.flitersong = this.fliter(this.songlist)
         },
+        searchsong(){
+            this.flitersong = this.fliter(this.songlist)
+        },
         spannumber(){
             return 24/this.colnumber();
         },
@@ -47,7 +68,9 @@ module.exports = {
                         if (tags.includes("Finished") && finish || tags.includes("Unfinished") && !finish) {
                             if (tags.includes("FULL") && full || tags.includes("Short") && !full) {
                                 if (tags.includes("HighDiff") && highdiff || tags.includes("LowDiff") && !highdiff) {
-                                    fsong.push(p);
+                                    if(this.searchtext == "" || search(p,this.searchtext)){
+                                        fsong.push(p);
+                                    }
                                 }
                             }
                         }
@@ -92,6 +115,9 @@ module.exports = {
                 return 1;
             }
         },
+        inputchange(e) {
+            this.$forceUpdate();
+        }
     },
     computed: {
     },

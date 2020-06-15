@@ -11,6 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
   <!-- import vue javascript-->
   <script src="songlist.js"></script>
+  <script src="diffanalysis.js"></script>
   <meta charset="UTF-8">
   <!-- import CSS -->
   <link href="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/theme-chalk/index.css" rel="stylesheet">
@@ -23,33 +24,77 @@
       <div style="width: 100%;height: 100%;">
         <el-backtop :bottom="60"></el-backtop>
       </div>
-      <el-header>Kirapacks 索引小站</el-header>
+      <el-header>
+          <el-menu mode="horizontal" default-active="1" @select="handleSelect" active-text-color="#409EFF">
+            <el-menu-item index="0"><div style="font-size: large;color:black">Kirapacks 索引小站</div></el-menu-item>
+            <el-menu-item index="1">主页</el-menu-item>
+            <el-menu-item index="2">Kirapacks 合集</el-menu-item>
+            <el-menu-item index="3">谱面分析</el-menu-item>
+            <el-menu-item index="4">使用工具</el-menu-item>
+          </el-menu>
+      </el-header>
       <el-main>
-        <el-tabs tab-position='left' v-model="activename">
+        <!--el-tabs tab-position='left' v-model="activename">
           <el-tab-pane label="主页" name="A">
-            <indexpage></indexpage>
+            <div v-if="activename=='A'">
+              <indexpage></indexpage>
+            </div>
           </el-tab-pane>
           <el-tab-pane label="Kirapacks 合集" name="B">
-            <kirapack :songlist="songlist"></kirapack>
+            <div v-if="activename=='B'">
+              <kirapack :songlist="songlist"></kirapack>
+            </div>
           </el-tab-pane>
           <el-tab-pane label="谱面分析" name="C">
-            <diffanalysis></diffanalysis>
+            <div v-if="activename=='B'">
+              <diffanalysis></diffanalysis>
+            </div>
           </el-tab-pane>
-        </el-tabs>
+        </el-tabs-->
+        <indexpage></indexpage>
       </el-main>
     </el-container>
   </div>
 </body>
 
 </html>
-<script src="main.js"></script>
-<style>
-  .el-header {
-    background-color: #409EFF;
-    color: #FFFFFF;
-    text-align: left;
-    line-height: 60px;
-    font-weight: bold;
-    font-size: large;
+<script>
+  Vue.use(httpVueLoader);
+  function getQueryString(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
   }
-</style>
+  var vm = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        //songlist: getsonglist(),
+        //activename: "A"
+      }
+    },
+    components: {
+      //'kirapack': 'url:.\\components\\kirapack\\kirapack.vue',
+      'indexpage': 'url:.\\components\\index\\index.vue',
+      //'diffanalysis': 'url:.\\components\\diffanalysis\\diffanalysis.vue'
+    },
+    template: ``,
+    methods: {
+      handleSelect(key, keypath) {
+        if(key == 0){
+          window.open("./index.html","_self");
+        }
+        if (key == 2) {
+          window.open("./kirapack.html", "_self");
+        }
+        if (key == 3){
+          window.open("./analysis.html","_self");
+        }
+      }
+    }
+  });
+</script>

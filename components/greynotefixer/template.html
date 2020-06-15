@@ -1,0 +1,23 @@
+<div>
+    <el-row>
+        <el-select v-model="accuracystr" placeholder="请选择准度">
+            <el-option value="4" label="1/4（强力去灰键）"></el-option>
+            <el-option value="12" label="1/12（推荐）"></el-option>
+            <el-option value="24" label="1/24（含有96分音）"></el-option>
+            <el-option value="48" label="1/48（含有192分音)"></el-option>
+        </el-select>
+        <p> </p>
+    </el-row>
+    <el-row>
+        <el-input type="textarea" :rows="10" v-model="inputstr" placeholder="请输入bestdori谱面" clearable></el-input>
+        <p> </p>
+    </el-row>
+    <el-row>
+        <el-button type="primary" @click="fix" style="width:100%">转换</el-button>
+        <p> </p>
+    </el-row>
+    <el-row>
+        <el-input type="textarea" :rows="10" v-model="outputstr" @input="outputchange($event)"></el-input>
+        <p> </p>
+    </el-row>
+</div>
