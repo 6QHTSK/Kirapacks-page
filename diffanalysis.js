@@ -214,7 +214,7 @@ function calcdifficulty(diffid, totalnps, totalhps, maxhps, maxfps, maxslidespee
 function details(chartjson, diffid, drawchart) {
     tmp = calctime(chartjson);
     notelist = tmp.notelist
-    console.log(chartjson);
+    //console.log(chartjson);
     bpmlow = tmp.bpmlow;
     bpmhigh = tmp.bpmhigh;
     totalnote = notelist.length;

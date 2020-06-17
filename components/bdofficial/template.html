@@ -1,0 +1,26 @@
+<div>
+    <el-row style="padding-bottom: 10px;">
+        <el-col :span="8">
+            <el-select v-model="diff" placeholder="请选择准度">
+                <el-option value="easy" label="Easy"></el-option>
+                <el-option value="normal" label="Normal"></el-option>
+                <el-option value="hard" label="Hard"></el-option>
+                <el-option value="expert" label="Expert"></el-option>
+                <el-option value="special" label="Special"></el-option>
+            </el-select>
+        </el-col>
+        <el-col style="text-align: right;" :span="16">
+            <el-tooltip content="输入bestdori官谱编号" placement="top">
+                <el-input-number type="number" :precision="0" :step="1" placeholder="bestdoriid" v-model="bestdoriid" @keyup.enter.native="pullbdchart()">
+                </el-input-number>
+            </el-tooltip>
+            <el-button type="primary" @click="pullbdchart()">拉取</el-button>
+        </el-col>
+        <p> </p>
+    </el-row>
+    <el-row>
+        <el-input type="textarea" :rows="10" v-model="outputstr" @input="outputchange($event)" v-loading="onloading">
+        </el-input>
+        <p> </p>
+    </el-row>
+</div>

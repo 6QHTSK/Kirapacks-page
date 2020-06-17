@@ -172,7 +172,12 @@ module.exports = {
                 return (this.totaldiff - 5) * 100 / 22;
         },
         getbestdorichart() {
-            url = "https://bird.ioliu.cn/v1?url=https://player.banground.fun/api/bestdori/community/" + this.bestdoriid;
+            if (this.bestdoriid > 500){
+                url = "https://bird.ioliu.cn/v1?url=https://player.banground.fun/api/bestdori/community/" + this.bestdoriid;
+            }
+            else{
+                url = "https://bird.ioliu.cn/v1?url=http://106.55.249.77/bdofftobdfan?id="+this.bestdoriid+"&diff=expert"
+            }
             flag = false;
             vm = this;
             this.loading = true;
@@ -181,9 +186,14 @@ module.exports = {
                 vm.loading = false;
                 if (res.status == 200) {
                     //console.log(res)
-                    if (res.data.result) {
+                    if (vm.bestdoriid > 500 && res.data.result) {
                         vm.inputstr = JSON.stringify(res.data.data.notes);
                         vm.diffid = res.data.data.difficulty < 3 ? res.data.data.difficulty : 3;
+                        vm.analysis()
+                    }
+                    else if(vm.bestdoriid <= 500 && res.data.result){
+                        vm.inputstr = JSON.stringify(res.data.data)
+                        vm.diffid = 3;
                         vm.analysis()
                     }
                     else {
