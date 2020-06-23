@@ -25,7 +25,7 @@
         <el-backtop :bottom="60"></el-backtop>
       </div>
       <el-header>
-        <el-menu mode="horizontal" default-active="4" @select="handleSelect" active-text-color="#409EFF">
+        <el-menu mode="horizontal" default-active="5" @select="handleSelect" active-text-color="#409EFF">
           <el-menu-item index="0">
             <div style="font-size: large;color:black">稳音绫的工具站</div>
           </el-menu-item>
@@ -37,40 +37,7 @@
         </el-menu>
       </el-header>
       <el-main>
-        <!--el-tabs tab-position='left' v-model="activename">
-          <el-tab-pane label="主页" name="A">
-            <div v-if="activename=='A'">
-              <indexpage></indexpage>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="Kirapacks 合集" name="B">
-            <div v-if="activename=='B'">
-              <kirapack :songlist="songlist"></kirapack>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="谱面分析" name="C">
-            <div v-if="activename=='B'">
-              <diffanalysis></diffanalysis>
-            </div>
-          </el-tab-pane>
-        </el-tabs-->
-        <el-tabs tab-position="left">
-          <el-tab-pane label="灰键修复器">
-            <greynotefixer></greynotefixer>
-          </el-tab-pane>
-          <el-tab-pane label="谱面位移器">
-            <notemover></notemover>
-          </el-tab-pane>
-          <el-tab-pane label="官谱转换器">
-            <bdofficial></bdofficial>
-          </el-tab-pane>
-          <el-tab-pane label="BPM分析器">
-            <p style="text-align: center;">注：BPM分析器引用于github上的Mikukonai大佬的成果,结果仅供参考，请使用Chrome浏览器打开</p>
-            <div>
-              <iframe id="content" src="https://mikukonai.com/Tempo/" style="width: 100%;" height="1000px" frameborder="no" border="0"></iframe>
-            </div>
-          </el-tab-pane>
-        </el-tabs>
+        <bestdoriany></bestdoriany>
       </el-main>
     </el-container>
   </div>
@@ -100,9 +67,6 @@
       //'kirapack': 'url:.\\components\\kirapack\\kirapack.vue',
       //'indexpage': 'url:.\\components\\index\\index.vue',
       //'diffanalysis': 'url:.\\components\\diffanalysis\\diffanalysis.vue'
-      'greynotefixer': 'url:.\\components\\greynotefixer\\greynotefixer.vue',
-      'notemover': 'url:.\\components\\notemover\\notemover.vue',
-      'bdofficial': 'url:.\\components\\bdofficial\\bdofficial.vue',
       'bestdoriany': 'url:.\\components\\bestdoriany\\bestdoriany.vue'
     },
     template: ``,
@@ -120,12 +84,12 @@
         if (key == 3) {
           window.open("./analysis.html", "_self");
         }
-        /*if (key == 4){
+        if (key == 4){
           window.open("./tools.html","_self");
-        }*/
-        if (key == 5){
-          window.open("./bestdoriany.html","_self");
         }
+        /*if (key == 5){
+          window.open("./bestdoriany.html","_self");
+        }*/
       }
     }
   });

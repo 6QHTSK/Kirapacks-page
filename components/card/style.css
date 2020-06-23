@@ -29,13 +29,13 @@ font-size: x-small;
 }
 
 .easy {
-background-color: #67C23A;
+background-color: #409EFF;
 color: rgb(240, 249, 235);
 width:36px;
 }
 
 .normal {
-background-color: #409EFF;
+background-color: #67C23A;
 color: rgb(236, 245, 255);
 }
 
