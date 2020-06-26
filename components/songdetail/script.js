@@ -52,11 +52,11 @@ module.exports = {
             this.SeeDetail = false;
             if(this.item.bdsrc==undefined)
             {
-                window.open('https://player.banground.fun/?id=' + this.item.id + '&type=community&autoload=true', "_blank")
+                window.open('https://reikohaku.gitee.io/bang-player/#/?id=' + this.item.id + '&type=community&autoload=true', "_blank")
             }
             else
             {
-                window.open('https://player.banground.fun/?id=' + this.item.newid + '&type=community&autoload=true', "_blank")
+                window.open('https://reikohaku.gitee.io/bang-player/#/?id=' + this.item.newid + '&type=community&autoload=true', "_blank")
             }
         },
         openkirapack(e) {
