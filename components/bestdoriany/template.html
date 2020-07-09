@@ -1,67 +1,143 @@
 <div v-loading="onloading" style="padding-left:20px;">
-    <el-card shadow = "hover">
+    <el-card shadow="hover">
         <div style="text-align: center;">
             目前追踪中的谱师： {{results["chartercount"]}}；
             目前社区的谱面：{{results["chartcount"]}}；
+            有效的谱面：{{results["validchartcount"]}}；
             数据库更新于：{{results["time"]}}
         </div>
     </el-card>
     <el-tabs>
-        <el-tab-pane label="自制谱面相关">
+        <el-tab-pane label="Bestdori数据">
             <el-row :gutter="20">
                 <el-col :xs="24" :s="24" :md="24" :lg="12" :xl="12">
-                    <el-card header="自制谱面难度信息">
-                        <el-row>
-                            <el-col :span="18">
-                                <canvas id="diffchart"></canvas>
-                            </el-col>
-                            <el-col :span="6">
-                                <el-table :data="diffdata">
-                                    <el-table-column prop="label" align="center"></el-table-column>
-                                    <el-table-column prop="value" align="center"></el-table-column>
-                                </el-table>
-                            </el-col>
-                        </el-row>
-                        <el-row>
-                            <canvas id="levelchart"></canvas>
-                        </el-row>
-                        <el-row>
-                            <canvas id="timechart"></canvas>
-                        </el-row>
-                    </el-card>
+                    <el-row>
+                        <el-col :span="18">
+                            <canvas id="diffchart"></canvas>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-table :data="diffdata">
+                                <el-table-column prop="label" align="center"></el-table-column>
+                                <el-table-column prop="value" align="center"></el-table-column>
+                            </el-table>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <canvas id="levelchart"></canvas>
+                    </el-row>
                 </el-col>
                 <el-col :xs="24" :s="24" :md="24" :lg="12" :xl="12">
-                    <el-card header="获赞最多的谱面">
-                        <el-table :data='results["likechartdetail"]' style="text-align: center;" stripe>
-                            <el-table-column prop="i" label="排名" width="50" align="center"></el-table-column>
-                            <el-table-column prop="id" label="ID" align="center" width="80"></el-table-column>
-                            <el-table-column prop="title" label="曲名" align="center"></el-table-column>
-                            <el-table-column prop="name" label="谱师" align="center"></el-table-column>
-                            <el-table-column prop="likes" label="获赞数" width="80" align="center"></el-table-column>
-                        </el-table>
-                    </el-card>
+                    <el-row>
+                        <canvas id="timechart"></canvas>
+                    </el-row>
+                    <el-row>
+                        <canvas id="likeperchart"></canvas>
+                    </el-row>
                 </el-col>
             </el-row>
+        </el-tab-pane>
+        <el-tab-pane label="获赞最多的谱面">
+            <el-alert title="仅供参考，高赞谱面不代表其优秀" type="warning"></el-alert>
+            <el-table :data='results["likechartdetail"]' style="text-align: center;" stripe>
+                <el-table-column type="index" label="排名"></el-table-column>
+                <el-table-column prop="0" label="ID" align="center" width="80"></el-table-column>
+                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                <el-table-column label="谱师" align="center">
+                    <template slot-scope="scope">
+                        <span v-if="scope.row[2]==null">{{scope.row[1]}}</span>
+                        <span v-else>{{scope.row[2]}}@{{scope.row[1]}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="5" label="获赞数" width="80" align="center"></el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="时间最长的谱面">
+            <el-alert title="仅供参考，不要试图刷榜，保护Bestdori服务器，人人有责" type="warning"></el-alert>
+            <el-table :data='results["longestchart"]' style="text-align: center;" stripe>
+                <el-table-column type="index" label="排名"></el-table-column>
+                <el-table-column prop="0" label="ID" align="center" width="80"></el-table-column>
+                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                <el-table-column label="谱师" align="center">
+                    <template slot-scope="scope">
+                        <span v-if="scope.row[2]==null">{{scope.row[1]}}</span>
+                        <span v-else>{{scope.row[2]}}@{{scope.row[1]}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="时长" width="80" align="center">
+                    <template slot-scope="scope">
+                        <span
+                            v-if="(scope.row[5]-60*Math.floor(scope.row[5]/60)).toFixed(0) >= 10">{{Math.floor(scope.row[5]/60)}}:{{(scope.row[5]-60*Math.floor(scope.row[5]/60)).toFixed(0)}}</span>
+                        <span
+                            v-else>{{Math.floor(scope.row[5]/60)}}:0{{(scope.row[5]-60*Math.floor(scope.row[5]/60)).toFixed(0)}}</span>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="物量最多的谱面">
+            <el-alert title="仅供参考，不要试图刷榜，保护Bestdori服务器，人人有责（注：Bestdori/PBG无法打开物量超过10000的谱面，请使用BanGround）"
+                type="warning"></el-alert>
+            <el-table :data='results["maxnotechart"]' style="text-align: center;" stripe>
+                <el-table-column type="index" label="排名"></el-table-column>
+                <el-table-column prop="0" label="ID" align="center" width="80"></el-table-column>
+                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                <el-table-column label="谱师" align="center">
+                    <template slot-scope="scope">
+                        <span v-if="scope.row[2]==null">{{scope.row[1]}}</span>
+                        <span v-else>{{scope.row[2]}}@{{scope.row[1]}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="5" label="物量" width="80" align="center"></el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="最发狂的谱面">
+            <el-alert title="仅供参考，不要试图刷榜，保护玩家浏览器，人人有责" type="warning"></el-alert>
+            <el-table :data='results["highestnpschart"]' style="text-align: center;" stripe>
+                <el-table-column type="index" label="排名"></el-table-column>
+                <el-table-column prop="0" label="ID" align="center" width="80"></el-table-column>
+                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                <el-table-column label="谱师" align="center">
+                    <template slot-scope="scope">
+                        <span v-if="scope.row[2]==null">{{scope.row[1]}}</span>
+                        <span v-else>{{scope.row[2]}}@{{scope.row[1]}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="5" label="NPS" width="80" align="center"></el-table-column>
+            </el-table>
         </el-tab-pane>
         <el-tab-pane label="发谱/获赞最多的谱师">
             <el-row :gutter="20">
                 <el-col :xs="24" :s="24" :md="24" :lg="12" :xl="12">
                     <el-card header="发谱最多的谱师">
                         <el-table :data='results["charterdetails"]' style="text-align: center;" stripe>
-                            <el-table-column prop="i" label="排名" width="50" align="center"></el-table-column>
+                            <el-table-column type="index" label="排名"></el-table-column>
+                            <!--el-table-column prop="0" label="排名" width="50" align="center"></el-table-column-->
                             <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
-                            <el-table-column prop="name" label="用户名" align="center"></el-table-column>
-                            <el-table-column prop="count" label="发谱数" width="80" align="center"></el-table-column>
+                            <el-table-column label="用户名" align="center">
+                                <template slot-scope="scope">
+                                    <span v-if="scope.row[1]==null">{{scope.row[0]}}</span>
+                                    <span v-else>{{scope.row[1]}}@{{scope.row[0]}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="2" label="发谱数" width="80" align="center"></el-table-column>
                         </el-table>
                     </el-card>
                 </el-col>
                 <el-col :xs="24" :s="24" :md="24" :lg="12" :xl="12">
                     <el-card header="获赞最多的谱师">
                         <el-table :data='results["likecharterdetail"]' style="text-align: center;" stripe>
-                            <el-table-column prop="i" label="排名" width="50" align="center"></el-table-column>
+                            <el-table-column type="index" label="排名"></el-table-column>
                             <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
-                            <el-table-column prop="name" label="用户名" align="center"></el-table-column>
-                            <el-table-column prop="count" label="获赞数" width="80" align="center"></el-table-column>
+                            <el-table-column label="用户名" align="center">
+                                <template slot-scope="scope">
+                                    <span v-if="scope.row[1]==null">{{scope.row[0]}}</span>
+                                    <span v-else>{{scope.row[1]}}@{{scope.row[0]}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="2" label="获赞数" width="80" align="center"></el-table-column>
                         </el-table>
                     </el-card>
                 </el-col>
@@ -74,20 +150,38 @@
                 <el-col :xs="24" :s="24" :md="24" :lg="12" :xl="12">
                     <el-card header="难度最高的谱师">
                         <el-table :data='results["highdiffcharterdetail"]' style="text-align: center;" stripe>
-                            <el-table-column prop="i" label="排名" width="50" align="center"></el-table-column>
+                            <el-table-column type="index" label="排名"></el-table-column>
                             <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
-                            <el-table-column prop="name" label="用户名" align="center"></el-table-column>
-                            <el-table-column prop="diff" label="平均难度" width="80" align="center"></el-table-column>
+                            <el-table-column label="用户名" align="center">
+                                <template slot-scope="scope">
+                                    <span v-if="scope.row[1]==null">{{scope.row[0]}}</span>
+                                    <span v-else>{{scope.row[1]}}@{{scope.row[0]}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="平均难度" width="80" align="center">
+                                <Template slot-scope="scope">
+                                    <span>{{scope.row[2].toFixed(2)}}</span>
+                                </Template>
+                            </el-table-column>
                         </el-table>
                     </el-card>
                 </el-col>
                 <el-col :xs="24" :s="24" :md="24" :lg="12" :xl="12">
                     <el-card header="难度最低的谱师">
                         <el-table :data='results["lowdiffcharterdetail"]' style="text-align: center;" stripe>
-                            <el-table-column prop="i" label="排名" width="50" align="center"></el-table-column>
+                            <el-table-column type="index" label="排名"></el-table-column>
                             <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
-                            <el-table-column prop="name" label="用户名" align="center"></el-table-column>
-                            <el-table-column prop="diff" label="平均难度" width="80" align="center"></el-table-column>
+                            <el-table-column label="用户名" align="center">
+                                <template slot-scope="scope">
+                                    <span v-if="scope.row[1]==null">{{scope.row[0]}}</span>
+                                    <span v-else>{{scope.row[1]}}@{{scope.row[0]}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="平均难度" width="80" align="center">
+                                <Template slot-scope="scope">
+                                    <span>{{scope.row[2].toFixed(2)}}</span>
+                                </Template>
+                            </el-table-column>
                         </el-table>
                     </el-card>
                 </el-col>
@@ -100,24 +194,126 @@
                 <el-col :xs="24" :s="24" :md="24" :lg="12" :xl="12">
                     <el-card header="热门单曲">
                         <el-table :data='results["heatedsongdetail"]' style="text-align: center;" stripe>
-                            <el-table-column prop="i" label="排名" width="50" align="center"></el-table-column>
+                            <el-table-column type="index" label="排名"></el-table-column>
                             <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
-                            <el-table-column prop="song" label="曲名" align="center"></el-table-column>
-                            <el-table-column prop="count" label="数量" width="80" align="center"></el-table-column>
+                            <el-table-column prop="0" label="曲名" align="center"></el-table-column>
+                            <el-table-column prop="1" label="数量" width="80" align="center"></el-table-column>
                         </el-table>
                     </el-card>
                 </el-col>
                 <el-col :xs="24" :s="24" :md="24" :lg="12" :xl="12">
                     <el-card header="热门艺术家">
                         <el-table :data='results["heatedartistdetail"]' style="text-align: center;" stripe>
-                            <el-table-column prop="i" label="排名" width="50" align="center"></el-table-column>
+                            <el-table-column type="index" label="排名"></el-table-column>
                             <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
-                            <el-table-column prop="name" label="艺术家名" align="center"></el-table-column>
-                            <el-table-column prop="count" label="数量" width="80" align="center"></el-table-column>
+                            <el-table-column prop="0" label="艺术家名" align="center"></el-table-column>
+                            <el-table-column prop="1" label="数量" width="80" align="center"></el-table-column>
                         </el-table>
                     </el-card>
                 </el-col>
             </el-row>
+        </el-tab-pane>
+        <el-tab-pane label="查询">
+            <div style="text-align: center;">
+                <p>在此输入需要查询的谱师，并在出现下拉框中选择,如无查询的谱师可能不满足条件未被网站记录</p>
+                <el-autocomplete v-model="searchuser" :fetch-suggestions="querySearch"
+                    placeholder="请输入谱师用户名" :trigger-on-focus="false" @select="handleSelect" style="width:500px"></el-autocomplete>
+            </div>
+            <el-divider></el-divider>
+            <div v-if="searchsee" v-loading="searchload">
+                <el-row>
+                    <el-col :span="24">
+                        <el-card>
+                            <div style="text-align: center;">
+                                <h1 v-if="searchres['nickname']==null">{{searchres['username']}}</h1>
+                                <h1 v-else>{{searchres['nickname']}}@{{searchres['username']}}</h1>
+                                <el-col :span="6">
+                                    <h3>有效谱面</h3>
+                                    <h2>#{{searchres["chartcount"][0]}} / {{searchres["chartcount"][1]}}</h2>
+                                </el-col>
+                                <el-col :span="6">
+                                    <h3>获赞数</h3>
+                                    <h2>#{{searchres["likecount"][0]}} / {{searchres["likecount"][1]}}</h2>
+                                </el-col>
+                                <el-col :span="6">
+                                    <h3>EX/SP平均难度</h3>
+                                    <h2 v-if='searchres["highdiffcount"][0] < searchres["lowdiffcount"][0]' style="color:#F56C6C">
+                                        #DESC {{searchres["highdiffcount"][0]}} /
+                                        {{searchres["highdiffcount"][1].toFixed(2)}}</h2>
+                                    <h2 v-else style="color:#67C23A">#ASC {{searchres["lowdiffcount"][0]}} /
+                                        {{searchres["lowdiffcount"][1].toFixed(2)}}</h2>
+                                </el-col>
+                                <el-col :span="6">
+                                    <h3>最后更新</h3>
+                                    <h2>{{searchres["lastupdate"]}}</h2>
+                                </el-col>
+                            </div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+                <el-divider></el-divider>
+                <el-row>
+                    <el-tabs type="border-card" tab-position="left">
+                        <el-tab-pane label="最受欢迎谱面">
+                            <el-table :data='searchres["likechartcount"]' style="text-align: center;" stripe>
+                                <el-table-column prop="0" label="排名" width="100" align="center"></el-table-column>
+                                <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
+                                <el-table-column prop="1" label="ID" align="center" width="100"></el-table-column>
+                                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                                <el-table-column prop="5" label="赞" width="80" align="center"></el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                        <el-tab-pane label="最新谱面">
+                            <el-table :data='searchres["lastupdatechart"]' style="text-align: center;" stripe>
+                                <el-table-column prop="0" label="编号" width="100" align="center"></el-table-column>
+                                <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
+                                <el-table-column prop="1" label="ID" align="center" width="100"></el-table-column>
+                                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                                <el-table-column prop="5" label="时间" align="center" width="200"></el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                        <el-tab-pane label="最长谱面">
+                            <el-table :data='searchres["lencount"]' style="text-align: center;" stripe>
+                                <el-table-column prop="0" label="排名" width="100" align="center"></el-table-column>
+                                <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
+                                <el-table-column prop="1" label="ID" align="center" width="100"></el-table-column>
+                                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                                <el-table-column label="时长" width="80" align="center">
+                                    <template slot-scope="scope">
+                                        <span
+                                            v-if="(scope.row[5]-60*Math.floor(scope.row[5]/60)).toFixed(0) >= 10">{{Math.floor(scope.row[5]/60)}}:{{(scope.row[5]-60*Math.floor(scope.row[5]/60)).toFixed(0)}}</span>
+                                        <span
+                                            v-else>{{Math.floor(scope.row[5]/60)}}:0{{(scope.row[5]-60*Math.floor(scope.row[5]/60)).toFixed(0)}}</span>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                        <el-tab-pane label="密度最大谱面">
+                            <el-table :data='searchres["npscount"]' style="text-align: center;" stripe>
+                                <el-table-column prop="0" label="排名" width="100" align="center"></el-table-column>
+                                <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
+                                <el-table-column prop="1" label="ID" align="center" width="100"></el-table-column>
+                                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                                <el-table-column prop="5" label="NPS" width="80" align="center"></el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                        <el-tab-pane label="物量最多谱面">
+                            <el-table :data='searchres["notecount"]' style="text-align: center;" stripe>
+                                <el-table-column prop="0" label="排名" width="100" align="center"></el-table-column>
+                                <!--el-table-column prop="nickname" label="用户名" align="center"></el-table-column-->
+                                <el-table-column prop="1" label="ID" align="center" width="100"></el-table-column>
+                                <el-table-column prop="3" label="曲名" align="center"></el-table-column>
+                                <el-table-column prop="4" label="艺术家" align="center"></el-table-column>
+                                <el-table-column prop="5" label="物量" width="80" align="center"></el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                    </el-tabs>
+                </el-row>
+            </div>
         </el-tab-pane>
     </el-tabs>
 </div>
