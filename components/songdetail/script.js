@@ -18,8 +18,8 @@ module.exports = {
             return this.item.artist + '-' + this.item.songname
         },
         cardestroy(e) {
-            var player=document.getElementById(this.item.songname);
-            player.pause();
+            //var player=document.getElementById(this.item.songname);
+            //player.pause();
             this.SeeDetail = false;
         },
         cardclick(e) {

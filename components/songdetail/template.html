@@ -12,13 +12,6 @@
         </div>
     </div>
     <div>
-        <el-col :span="12" style="text-align:center;">
-            <p style="font-size: small; color: rgb(100, 100, 100);">{{origin()}}</p>
-            <audio controls :id="musictag">
-                <source :src="audiosrc()" type="audio/mpeg">
-            </audio>
-            <p><tags :item="item"></tags></p>
-        </el-col>
         <el-col :span="12" style="padding-top: 10px;">
             <el-table :data="songmeta()" style="width: 100%" :show-header="false" size="small">
                 <el-table-column label="" align="center" min-width="95">
@@ -52,6 +45,13 @@
                     </template>
                 </el-table-column>
             </el-table>
+        </el-col>
+        <el-col :span="12" style="text-align:center;">
+            <p style="font-size: small; color: rgb(100, 100, 100);">{{origin()}}</p>
+            <!--audio controls :id="musictag">
+                <source :src="audiosrc()" type="audio/mpeg">
+            </audio-->
+            <p><tags :item="item"></tags></p>
         </el-col>
     </div>
     <div slot = "footer" style="padding-top: 100px;">

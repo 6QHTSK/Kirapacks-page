@@ -2,12 +2,19 @@
     <div style="padding:10px">
         <div style="padding-bottom: 10px;">
             <el-row>
-                <el-col :span="5">
-                    <div style="padding-left:20px">
+                <el-col :span= "5">
+                    <!--div style="padding-left:20px">
                         <el-slider v-model="diffid" :max="3" :min="0" :format-tooltip="showdiffrange" :marks="marks"
                             @input="changecolor">
                         </el-slider>
-                    </div>
+                    </div-->
+                        <el-select v-model="diffid" placeholder="请选择准度" :disabled="loading || showdetail">
+                            <el-option :key="0" :value="0" label="Easy"></el-option>
+                            <el-option :key="1" :value="1" label="Normal"></el-option>
+                            <el-option :key="2" :value="2" label="Hard"></el-option>
+                            <el-option :key="3" :value="3" label="Expert"></el-option>
+                            <el-option :key="4" :value="4" label="Special"></el-option>
+                        </el-select>
                 </el-col>
                 <el-col :span="19">
                     <div style="text-align: right;">
@@ -16,8 +23,8 @@
                                 @keyup.enter.native="getbestdorichart">
                             </el-input>
                         </span>
-                        <el-button @click="getbestdorichart">获取</el-button>
-                        <el-button @click="clearinput">重置</el-button>
+                        <el-button type="primary" @click="getbestdorichart">获取</el-button>
+                        <el-button type="danger" @click="clearinput">重置</el-button>
                     </div>
                 </el-col>
             </el-row>
@@ -27,111 +34,243 @@
             </el-input>
         </div>
         <el-row>
-            <el-button type="primary" @click="analysis" style="width:100%">分析</el-button>
+            <el-button type="primary" @click="analysis(false)" style="width:100%" :disabled="loading || showdetail">分析</el-button>
         </el-row>
     </div>
     <div v-show="showdetail">
-        <el-divider>谱面分析</el-divider>
-        <el-checkbox v-model="viewhelp" @change="inputchange($event)">显示帮助</el-checkbox>
+        <el-divider>
+            <span style="font-size: x-large;">谱面分析</span>
+        </el-divider>
+        <el-row :gutter="20">
+            <el-col :span="6">
+                <el-card :body-style="{ padding: '5px'}" shadow="hover">
+                    <div style="text-align: center;padding-bottom: 10px;">
+                        <el-divider>Time</el-divider>
+                        <span style="font-size: xx-large;">
+                            <span v-if="totaltimesec < 10.0">{{totaltimemin}}'0{{totaltimesec}}</span>
+                            <span v-else>{{totaltimemin}}'{{totaltimesec}}</span>
+                        </span>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card :body-style="{ padding: '5px'}" shadow="hover">
+                    <div style="text-align: center;padding-bottom: 10px;">
+                        <el-divider>BPM</el-divider>
+                        <span style="font-size: xx-large;">
+                            <span v-if="bpmlow == bpmhigh">{{bpmlow}}</span>
+                            <span v-else>{{bpmlow}}~{{bpmhigh}}</span>
+                        </span>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card :body-style="{ padding: '5px'}" shadow="hover">
+                    <div style="text-align: center;padding-bottom: 10px;">
+                        <el-divider>Notes</el-divider>
+                        <span style="font-size: xx-large;">{{totalnote}}</span>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card :body-style="{ padding: '5px'}" shadow="hover">
+                    <div style="text-align: center;padding-bottom: 10px;">
+                        <el-divider>Hits</el-divider>
+                        <span style="font-size: xx-large;">{{totalhitnote}}</span>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
         <el-row :gutter="12">
             <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
-                <div style="padding-bottom: 10px;">
+                <div style="padding-bottom: 10px;" v-if="leftpercent!=null">
                     <el-divider>
-                        谱面难度
+                        <span style="font-size: large;">双手压力分配</span>
                     </el-divider>
                     <div style="padding-bottom: 30px;">
-                        <el-col :span="20">
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">L</span>
+                                <span>{{leftpercent}}%</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="14">
                             <div style="vertical-align: middle;padding-top:10px;">
-                                <el-progress :show-text="false" :percentage="calcpercentage()" :stroke-width="26"
-                                    :color="getdiffcolor()">
+                                <el-progress :show-text="false" :percentage="calcpercentage2(leftpercent)" :color="returncolor"
+                                    :stroke-width="20">
                                 </el-progress>
                             </div>
                         </el-col>
-                        <el-col :span="4">
-                            <el-tooltip :disabled="!viewhelp" content="谱面的总难度，出现大于小于号则说明超出量程">
-                                <div style="vertical-align: middle;text-align: center;font-size: xx-large">
-                                    <span>{{totalstrdiff}}</span>
-                                </div>
-                            </el-tooltip>
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">R</span>
+                                <span>{{100-leftpercent}}%</span>
+                            </div>
                         </el-col>
                     </div>
                 </div>
-                <el-divider>详细数据</el-divider>
-                <el-row :gutter="12">
-                    <el-col :span="6">
-                        <el-tooltip :disabled="!viewhelp" placement="top">
-                            <div slot="content">Time: 谱面时间<br />BPM: 每分钟节拍数<br />Flick: 谱面含有粉键数</div>
-                            <el-card :body-style="{ padding: '5px'}" shadow="hover">
-                                <div style="text-align: center;padding-bottom: 10px;">
-                                    <el-divider>Time</el-divider>
-                                    <span style="font-size: x-large; padding-bottom: 10px;">
-                                        <span v-if="totaltimesec < 10.0">{{totaltimemin}}'0{{totaltimesec}}</span>
-                                        <span v-else>{{totaltimemin}}'{{totaltimesec}}</span>
-                                    </span>
-                                    <el-divider>BPM</el-divider>
-                                    <span style="font-size: x-large;">
-                                        <span v-if="bpmlow == bpmhigh">{{bpmlow}}</span>
-                                        <span v-else>{{bpmlow}}~{{bpmhigh}}</span>
-                                    </span>
-                                    <el-divider>Flick</el-divider>
-                                    <span style="font-size: x-large;">{{totalflick}}</span>
-                                </div>
-                            </el-card>
-                        </el-tooltip>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-tooltip :disabled="!viewhelp" placement="top">
-                            <div slot="content">Note: 谱面物量<br />NPS: 每秒平均物量<br />Diff: NPS难度</div>
-                            <el-card :body-style="{ padding: '5px'}" shadow="hover">
-                                <div style="text-align: center; padding-bottom: 10px;">
-                                    <el-divider>Note</el-divider>
-                                    <span style="font-size: x-large;">{{totalnote}}</span>
-                                    <el-divider>NPS</el-divider>
-                                    <span style="font-size: x-large;">{{totalnps}}</span>
-                                    <el-divider>Diff</el-divider>
-                                    <span style="font-size: x-large;">{{npsstrdiff}}</span>
-                                </div>
-                            </el-card>
-                        </el-tooltip>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-tooltip :disabled="!viewhelp" placement="top">
-                            <div slot="content">Hit: 谱面中需要击打的元素(包括单键、粉键、绿条开始键)<br />HPS: 每秒平均击打屏幕的次数<br />Diff: HPS难度
-                            </div>
-                            <el-card :body-style="{ padding: '5px'}" shadow="hover">
-                                <div style="text-align: center; padding-bottom: 10px;">
-                                    <el-divider>Hit</el-divider>
-                                    <span style="font-size: x-large;">{{totalhitnote}}</span>
-                                    <el-divider>HPS</el-divider>
-                                    <span style="font-size: x-large;">{{totalhps}}</span>
-                                    <el-divider>Diff</el-divider>
-                                    <span style="font-size: x-large;">{{hpsstrdiff}}</span>
-                                </div>
-                            </el-card>
-                        </el-tooltip>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-tooltip :disabled="!viewhelp" placement="top">
-                            <div slot="content">MaxHPS: 每秒最高击打屏幕次数<br />MaxFPS: 每秒最高击打粉键的次数<br />MaxSPD:
-                                最高滑动绿条的速度，单位lane/s</div>
-                            <el-card :body-style="{ padding: '5px'}" shadow="hover">
-                                <div style="text-align: center; padding-bottom: 10px;">
-                                    <el-divider>MaxHPS</el-divider>
-                                    <span style="font-size: x-large;">{{maxhps}}</span>
-                                    <el-divider>MaxFPS</el-divider>
-                                    <span style="font-size: x-large;">{{maxfps}}</span>
-                                    <el-divider>MaxSPD</el-divider>
-                                    <span style="font-size: x-large;">{{maxslidespeed}}</span>
-                                </div>
-                            </el-card>
-                        </el-tooltip>
-                    </el-col>
-                </el-row>
             </el-col>
             <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
-                <el-tooltip :disabled="!viewhelp" content="NPS 每秒物量数， HPS 每秒击打数 , FPS 每秒击打的粉键数">
-                    <canvas id="map"></canvas>
-                </el-tooltip>
+                <div style="padding-bottom: 10px;" v-if="npsdiff!=null">
+                    <el-divider>
+                        <span style="font-size: large;">NPS（总体密度）</span>
+                    </el-divider>
+                    <div style="padding-bottom: 30px;">
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span>{{totalnps}}</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="14">
+                            <div style="vertical-align: middle;padding-top:10px;">
+                                <el-progress :show-text="false" :percentage="calcpercentage(npsdiff)" :color="returncolor"
+                                    :stroke-width="20">
+                                </el-progress>
+                            </div>
+                        </el-col>
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">LV</span>
+                                <span>{{npsdiff}}</span>
+                            </div>
+                        </el-col>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
+                <div style="padding-bottom: 10px;" v-if="hpsdiff!=null">
+                    <el-divider>
+                        <span style="font-size: large;">HPS（总体压力）</span>
+                    </el-divider>
+                    <div style="padding-bottom: 30px;">
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span>{{totalhps}}</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="14">
+                            <div style="vertical-align: middle;padding-top:10px;">
+                                <el-progress :show-text="false" :percentage="calcpercentage(hpsdiff)" :color="returncolor"
+                                    :stroke-width="20">
+                                </el-progress>
+                            </div>
+                        </el-col>
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">LV</span>
+                                <span>{{hpsdiff}}</span>
+                            </div>
+                        </el-col>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
+                <div style="padding-bottom: 10px;" v-if="maxhpsdiff!=null">
+                    <el-divider>
+                        <span style="font-size: large;">单手最大HPS（单手爆发）</span>
+                    </el-divider>
+                    <div style="padding-bottom: 30px;">
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span>{{maxhps}}</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="14">
+                            <div style="vertical-align: middle;padding-top:10px;">
+                                <el-progress :show-text="false" :percentage="calcpercentage(maxhpsdiff)" :color="returncolor"
+                                    :stroke-width="20">
+                                </el-progress>
+                            </div>
+                        </el-col>
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">LV</span>
+                                <span>{{maxhpsdiff}}</span>
+                            </div>
+                        </el-col>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
+                <div style="padding-bottom: 10px;" v-if="maxspddiff!=null">
+                    <el-divider>
+                        <span style="font-size: large;">最大位移速度</span>
+                    </el-divider>
+                    <div style="padding-bottom: 30px;">
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span>{{maxspd}}</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="14">
+                            <div style="vertical-align: middle;padding-top:10px;">
+                                <el-progress :show-text="false" :percentage="calcpercentage(maxspddiff)" :color="returncolor"
+                                    :stroke-width="20">
+                                </el-progress>
+                            </div>
+                        </el-col>
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">LV</span>
+                                <span>{{maxspddiff}}</span>
+                            </div>
+                        </el-col>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
+                <div style="padding-bottom: 10px;" v-if="maxfpsfrontdiff!=null">
+                    <el-divider>
+                        <span style="font-size: large;">粉键 - 前接</span>
+                    </el-divider>
+                    <div style="padding-bottom: 30px;">
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span>{{maxfpsfront}}</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="14">
+                            <div style="vertical-align: middle;padding-top:10px;">
+                                <el-progress :show-text="false" :percentage="calcpercentage(maxfpsfrontdiff)" :color="returncolor"
+                                    :stroke-width="20">
+                                </el-progress>
+                            </div>
+                        </el-col>
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">LV</span>
+                                <span>{{maxfpsfrontdiff}}</span>
+                            </div>
+                        </el-col>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
+                <div style="padding-bottom: 10px;" v-if="maxfpsbackdiff!=null">
+                    <el-divider>
+                        <span style="font-size: large;">粉键 - 接后</span>
+                    </el-divider>
+                    <div style="padding-bottom: 30px;">
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span>{{maxfpsback}}</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="14">
+                            <div style="vertical-align: middle;padding-top:10px;">
+                                <el-progress :show-text="false" :percentage="calcpercentage(maxfpsbackdiff)" :color="returncolor"
+                                    :stroke-width="20">
+                                </el-progress>
+                            </div>
+                        </el-col>
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">LV</span>
+                                <span>{{maxfpsbackdiff}}</span>
+                            </div>
+                        </el-col>
+                    </div>
+                </div>
             </el-col>
         </el-row>
         <div style="margin-bottom: 50px;">
@@ -139,11 +278,11 @@
         </div>
     </div>
     <div>
-        <el-divider>使用说明</el-divider>
+        <el-divider><span style="font-size: x-large;">使用说明</span></el-divider>
         <div style="font-size: 13px;">
-            <p>Beta 1.0.1 版，运算结果仅供参考，不代表曲目的最真实难度。</p>
+            <p>Beta 1.1.1 版，运算结果仅供参考，不代表曲目的最真实难度。</p>
             <p>请选择正确的难度分级，否则将会造成较大的误差</p>
-            <p>量程：Easy: 5~10 Normal: 11~15 Hard: 16~21 Expert: 22~26，超出量程时显示≥或≤ 和 地板/天花板 难度</p>
+            <p>量程：Easy: 5~12 Normal: 11~16 Hard: 16~23 Expert: 22~29，超出量程时显示估计值</p>
             <p>警告：请选择正确的难度分级，否则将会造成较大的误差</p>
             <p>如在使用过程中出现任何问题，联系作者</p>
         </div>
@@ -159,7 +298,7 @@
             <el-collapse-item title="注">
                 <p>若想分析其它谱面，点击清空，再输入新的谱面。或者在右下角的小输入框中输入新的想分析的bestdori社区谱面</p>
                 <p>Expert难度运算结果可能与真实难度差异较大，谱面难度的精确度一般为±1级</p>
-                <p>建模的时候忽略了锁手和卡手配置影响难度的情况，若出现上述配置一般难度会偏低2~3级（写分配手的代码量太大了，摸了，后期会加）</p>
+                <p>建模的时候忽略了锁手和卡手配置影响难度的情况，若出现上述配置一般难度会偏低2~3级（加了分配手的代码也没用）</p>
             </el-collapse-item>
         </el-collapse>
     </div>
