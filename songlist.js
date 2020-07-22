@@ -606,7 +606,7 @@ function getsonglist(){
         {
             "id":"22550",
             "imgsrc":"Songpic\\22550.webp",
-            "songname":"[FULL] Wonderland Girl",
+            "songname":"Wonderland Girl",
             "artist":"Pastel＊Palettes",
             "diff":["-1","-1","-1","26","-1"],
             "maxdiff":26,
@@ -641,6 +641,7 @@ function getsonglist(){
             "time":99,
             "bpm":[130,130],
             "note":[-1,-1,-1,450,-1],
+            "video":true
         },
         {
             "id":"23385",
