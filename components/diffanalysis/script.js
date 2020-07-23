@@ -44,6 +44,15 @@ module.exports = {
     },
     mounted() {
         id = getQueryString("id")
+        var sUserAgent = navigator.userAgent;
+        if (sUserAgent.indexOf('Android') > -1 || sUserAgent.indexOf('iPhone') > -1 || sUserAgent.indexOf('iPad') > -1 || sUserAgent.indexOf('iPod') > -1 || sUserAgent.indexOf('Symbian') > -1) {
+            if (id != false && id != null) {
+                location.href = 'http://coppercomplex.gitee.io/mobile/diffanalysis.html?id=' + id;
+            }
+            else{
+                location.href = 'http://coppercomplex.gitee.io/mobile/diffanalysis.html';
+            }
+        } else {}
         if (id != false && id != null) {
             this.bestdoriid = id.toString();
             this.getbestdorichart();

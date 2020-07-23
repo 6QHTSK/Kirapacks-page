@@ -12,7 +12,7 @@ module.exports = {
     },
     methods: {
         imgsrc(e) {
-            return '.\\Songpic\\HD\\' + this.item.id + '.jpg'
+            return 'https://test-1300838857.cos.ap-singapore.myqcloud.com/HD-JPG/' + this.item.id + '.jpg'
         },
         detailcardtitle(e) {
             return this.item.artist + '-' + this.item.songname

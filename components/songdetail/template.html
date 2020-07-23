@@ -56,7 +56,7 @@
     </div>
     <div slot = "footer" style="padding-top: 100px;">
         <el-tooltip class="item" effect="dark" content="在 Bilibili 上观看" placement="top">
-            <el-button @click="openbililink()" size="small">Bilibili</el-button>
+            <el-button @click="openbililink()" size="small" :disabled="this.item.bilisrc==undefined">Bilibili</el-button>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="在 Bestdori 上查看谱面最高难度" placement="top">
             <el-button @click="openbdlink()" size="small">Bestdori</el-button>

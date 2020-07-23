@@ -578,7 +578,7 @@ function getsonglist(){
         },
         {
             "id":"21925",
-            "imgsrc":"Songpic\\21925.webp",
+            //"imgsrc":"Songpic\\21925.webp",
             "songname":"シャボン -キャロver.-",
             "artist":"進藤 あまね",
             "diff":["-1","-1","-1","25","-1"],
