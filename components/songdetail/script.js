@@ -61,7 +61,7 @@ module.exports = {
         },
         openkirapack(e) {
             this.SeeDetail = false;
-            window.open('https://assets-1300838857.cos.ap-nanjing.myqcloud.com/kirapack/' + e.id + '.kirapack', "_blank");
+            window.open('https://assets-1300838857.cos.ap-nanjing.myqcloud.com/kirapack/' + this.item.id + '.kirapack', "_blank");
         },
         audiosrc(e){
             return ".\\song\\"+this.item.id+".mp3"
