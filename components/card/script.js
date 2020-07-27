@@ -8,7 +8,7 @@ module.exports = {
     },
     methods: {
         imgsrc(e){
-          return 'https://test-1300838857.cos.ap-singapore.myqcloud.com/WEBP/'+this.item.id+'.webp'
+          return 'https://assets-1300838857.cos.ap-nanjing.myqcloud.com/pic/'+this.item.id+'.jpg/webp'
         },
         cardclick(e){
           this.$refs.songdetail.cardclick();

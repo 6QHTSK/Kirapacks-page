@@ -12,7 +12,7 @@ module.exports = {
     },
     methods: {
         imgsrc(e) {
-            return 'https://test-1300838857.cos.ap-singapore.myqcloud.com/HD-JPG/' + this.item.id + '.jpg'
+            return 'https://assets-1300838857.cos.ap-nanjing.myqcloud.com/pic/' + this.item.id + '.jpg/hd'
         },
         detailcardtitle(e) {
             return this.item.artist + '-' + this.item.songname
@@ -61,14 +61,7 @@ module.exports = {
         },
         openkirapack(e) {
             this.SeeDetail = false;
-            if(this.item.kpsrc==undefined)
-            {
-                window.open('http://coppercomplex.gitee.io/kirapack-store/' + this.item.id + '.kirapack', "_blank");
-            }
-            else
-            {
-                window.open(this.item.kpsrc, "_blank");
-            }
+            window.open('https://assets-1300838857.cos.ap-nanjing.myqcloud.com/kirapack/' + e.id + '.kirapack', "_blank");
         },
         audiosrc(e){
             return ".\\song\\"+this.item.id+".mp3"

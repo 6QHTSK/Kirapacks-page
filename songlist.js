@@ -2,7 +2,6 @@ function getsonglist(){
     return [
         {
             "id": "6531",
-            "imgsrc":"Songpic\\6531.webp",
             "songname": "夜空",
             "artist": "鈴木みのり",
             "diff": ["7","14","18","23","-1"],
@@ -16,7 +15,6 @@ function getsonglist(){
         },
         {
             "id": "9220",
-            "imgsrc":"Songpic\\9220.webp",
             "songname": "One Room Sugar Life",
             "artist": "ナナヲアカリ",
             "diff": ["9","16","21","28","26"],
@@ -31,7 +29,6 @@ function getsonglist(){
         },
         {
             "id": "1235",
-            "imgsrc":"Songpic\\1235.webp",
             "songname": "God Save The Girls",
             "artist": "下地紫野",
             "diff": ["-1","-1","-1","21","-1"],
@@ -45,7 +42,6 @@ function getsonglist(){
         },
         {
             "id": "4714",
-            "imgsrc":"Songpic\\4714.webp",
             "songname": "Torchlight～夢の灯り～",
             "artist": "KiraraQuintet",
             "diff": ["-1","-1","-1","25","-1"],
@@ -58,7 +54,6 @@ function getsonglist(){
         },
         {
             "id": "5002",
-            "imgsrc":"Songpic\\5002.webp",
             "songname": "Jumping!!",
             "artist": "Rhodanthe※",
             "diff": ["-1","-1","17","25","-1"],
@@ -71,7 +66,6 @@ function getsonglist(){
         },
         {
             "id": "5412",
-            "imgsrc":"Songpic\\5412.webp",
             "songname": "Foreigner Song",
             "artist": "Lioness & Nina ",
             "diff": ["-1","-1","-1","22","-1"],
@@ -84,7 +78,6 @@ function getsonglist(){
         },
         {
             "id": "5826",
-            "imgsrc":"Songpic\\5826.webp",
             "songname": "歩いていこう！",
             "artist": "东山奈央",
             "diff": ["-1","-1","-1","25","-1"],
@@ -97,7 +90,6 @@ function getsonglist(){
         },
         {
             "id":"6225",
-            "imgsrc":"Songpic\\6225.webp",
             "songname":"BUTTERFLY EFFECTOR",
             "artist":"TRUE",
             "diff":["-1","-1","-1","26","-1"],
@@ -110,7 +102,6 @@ function getsonglist(){
         },
         {
             "id":"6933",
-            "imgsrc":"Songpic\\6933.webp",
             "songname":"ヒロメネス",
             "artist":"Mashumairesh!!",
             "diff":["-1","-1","-1","25","-1"],
@@ -124,7 +115,6 @@ function getsonglist(){
         },
         {
             "id":"7226",
-            "imgsrc":"Songpic\\7226.webp",
             "songname":"カラフル·ハート·ライン",
             "artist":"桜庭遊乃 & 仁篠珠季 & 高月紗恵香",
             "diff":["-1","-1","-1","26","-1"],
@@ -138,7 +128,6 @@ function getsonglist(){
         },
         {
             "id":"7452",
-            "imgsrc":"Songpic\\7452.webp",
             "songname":"花雪",
             "artist":"チーム ハナヤマタ",
             "diff":["8","12","17","26","27"],
@@ -148,11 +137,11 @@ function getsonglist(){
             "bilisrc":"https://www.bilibili.com/video/BV1X7411U7CJ",
             "time":89,
             "note":[116,218,323,557,626],
-            "bpm":[146,146]
+            "bpm":[146,146],
+            "video":true
         },
         {
             "id":"7609",
-            "imgsrc":"Songpic\\7609.webp",
             "songname":"ふゆびより",
             "artist":"佐々木恵梨",
             "diff":["-1","-1","-1","23","-1"],
@@ -166,7 +155,6 @@ function getsonglist(){
         },
         {
             "id":"7700",
-            "imgsrc":"Songpic\\7700.webp",
             "songname":"Theme of Rabi-Ribi",
             "artist":"3R2",
             "diff":["-1","-1","-1","28","-1"],
@@ -179,7 +167,6 @@ function getsonglist(){
         },
         {
             "id":"8083",
-            "imgsrc":"Songpic\\6531.webp",
             "songname":"夜空",
             "artist":"鈴木みのり",
             "diff":["-1","-1","-1","24","-1"],
@@ -192,7 +179,6 @@ function getsonglist(){
         },
         {
             "id":"8129",
-            "imgsrc":"Songpic\\8129.webp",
             "songname":"go to romance>>>",
             "artist":"Luce Twinkle Wink☆",
             "diff":["-1","-1","-1","26","-1"],
@@ -205,7 +191,6 @@ function getsonglist(){
         },
         {
             "id":"8177",
-            "imgsrc":"Songpic\\8177.webp",
             "songname":"夢路らびりんす",
             "artist":"Labyrinth",
             "diff":["8","14","19","26","-1"],
@@ -220,7 +205,6 @@ function getsonglist(){
         },
         {
             "id":"8466",
-            "imgsrc":"Songpic\\8466.webp",
             "songname":"Fragile",
             "artist":"伊藤美来&宮本侑芽",
             "diff":["-1","-1","-1","22","-1"],
@@ -234,7 +218,6 @@ function getsonglist(){
         },
         {
             "id":"9107",
-            "imgsrc":"Songpic\\9107.webp",
             "songname":"明日への扉",
             "artist":"山田结衣&加濑友香",
             "diff":["-1","-1","-1","24","-1"],
@@ -247,7 +230,6 @@ function getsonglist(){
         },
         {
             "id":"9395",
-            "imgsrc":"Songpic\\9395.webp",
             "songname":"Starfall",
             "artist":"袁娅维",
             "diff":["6","14","19","25","-1"],
@@ -257,11 +239,11 @@ function getsonglist(){
             "bilisrc":"https://www.bilibili.com/video/BV1654y1D7vk",
             "time":100,
             "bpm":[76,76],
-            "note":[85,263,438,499,-1]
+            "note":[85,263,438,499,-1],
+            "video":true
         },
         {
             "id":"9654",
-            "imgsrc":"Songpic\\9654.webp",
             "songname":"Love Emotion",
             "artist":"鈴湯",
             "diff":["-1","-1","-1","26","-1"],
@@ -270,12 +252,10 @@ function getsonglist(){
             "origin":"游戏《一生推不如一生恋》OP",
             "time":77,
             "bpm":[143,143],
-            "note":[-1,-1,-1,563,-1],
-            "video":true
+            "note":[-1,-1,-1,563,-1]
         },
         {
             "id":"10001",
-            "imgsrc":"Songpic\\10001.webp",
             "songname":"よいまちカンターレ",
             "artist":"コーロまちカド",
             "diff":["-1","-1","-1","27","-1"],
@@ -288,7 +268,6 @@ function getsonglist(){
         },
         {
             "id":"10149",
-            "imgsrc":"Songpic\\10149.webp",
             "songname":"君へと続く道",
             "artist":"相良心",
             "diff":["-1","-1","-1","24","-1"],
@@ -301,7 +280,6 @@ function getsonglist(){
         },
         {
             "id":"10985",
-            "imgsrc":"Songpic\\10985.webp",
             "songname":"キラメキFuture",
             "artist":"KiRaRe",
             "diff":["-1","-1","-1","27","-1"],
@@ -315,14 +293,13 @@ function getsonglist(){
         },
         {
             "id":"11496",
-            "imgsrc":"Songpic\\11496.webp",
             "songname":"BanG Dream! FILM LIVE",
             "artist":"Bushiroad",
             "diff":["-1","-1","-1","-1","30"],
             "maxdiff":30,
             "tags":["Anime","BanG Dream! FILM LIVE","全文"],
             "origin":"2019年9月《BanG Dream! FILM LIVE》全文",
-            "kpsrc":"https://share.weiyun.com/5JNNCY0l",
+            //"kpsrc":"https://share.weiyun.com/5JNNCY0l",
             "time":4363,
             "bpm":[63,210],
             "note":[-1,-1,-1,-1,22468],
@@ -330,7 +307,6 @@ function getsonglist(){
         },
         {
             "id":"11895",
-            "imgsrc":"Songpic\\11895.webp",
             "songname":"Happy☆Pretty☆Clover",
             "artist":"Rhodanthe※",
             "diff":["-1","-1","-1","24","-1"],
@@ -344,7 +320,6 @@ function getsonglist(){
         },
         {
             "id":"12426",
-            "imgsrc":"Songpic\\12426.webp",
             "songname":"涙はみせない",
             "artist":"こみっくがーるず",
             "diff":["-1","-1","-1","23","-1"],
@@ -358,7 +333,6 @@ function getsonglist(){
         },
         {
             "id":"12824",
-            "imgsrc":"Songpic\\12824.webp",
             "songname":"君と見た星",
             "artist":"真中 苍（CV：山口愛）",
             "diff":["-1","-1","-1","21","-1"],
@@ -372,7 +346,6 @@ function getsonglist(){
         },
         {
             "id":"13008",
-            "imgsrc":"Songpic\\13008.webp",
             "songname":"木もれび青春譜",
             "artist":"水濑祈，德井青空，村川梨衣",
             "diff":["-1","-1","18","-1","-1"],
@@ -386,7 +359,6 @@ function getsonglist(){
         },
         {
             "id":"13345",
-            "imgsrc":"Songpic\\13345.webp",
             "songname":" あの星の向こうに",
             "artist":"高柳 知葉",
             "diff":["-1","-1","-1","20","-1"],
@@ -400,7 +372,6 @@ function getsonglist(){
         },
         {
             "id":"16384",
-            "imgsrc":"Songpic\\16384.webp",
             "songname":"永訣のGemini",
             "artist":"La priere(棗いつき/藍月なくる/nayuta)",
             "diff":["-1","-1","-1","25","-1"],
@@ -414,7 +385,6 @@ function getsonglist(){
         },
         {
             "id":"17046",
-            "imgsrc":"Songpic\\17046.webp",
             "songname":"Brilliant Wings",
             "artist":"Stella Maris",
             "diff":["-1","-1","-1","28","-1"],
@@ -429,7 +399,6 @@ function getsonglist(){
         },
         {
             "id":"17553",
-            "imgsrc":"Songpic\\17553.webp",
             "songname":"Dual Ego",
             "artist":"萨顶顶",
             "diff":["-1","-1","-1","25","-1"],
@@ -442,14 +411,13 @@ function getsonglist(){
         },
         {
             "id":"17555",
-            "imgsrc":"Songpic\\17555.webp",
             "songname":"Kizuna Music(S02E13)",
             "artist":"Bushiroad",
             "diff":["-1","-1","-1","-1","28"],
             "maxdiff":28,
             "tags":["Anime","BanG Dream! 2nd Season","节选"],
             "origin":"2019年1月《BanG Dream! 2nd Season》13集",
-            "kpsrc":"https://share.weiyun.com/zvWGZSjt",
+            //"kpsrc":"https://share.weiyun.com/zvWGZSjt",
             "time":987,
             "bpm":[63,189],
             "note":[-1,-1,-1,-1,4735],
@@ -457,7 +425,6 @@ function getsonglist(){
         },
         {
             "id":"18318",
-            "imgsrc":"Songpic\\18318.webp",
             "songname":"憧れFuture Sign",
             "artist":"KiRaRe",
             "diff":["-1","-1","-1","25","-1"],
@@ -471,7 +438,6 @@ function getsonglist(){
         },
         {
             "id":"19015",
-            "imgsrc":"Songpic\\19015.webp",
             "songname":"Nightglow",
             "artist":"蔡健雅",
             "diff":["-1","-1","-1","24","-1"],
@@ -484,7 +450,6 @@ function getsonglist(){
         },
         {
             "id":"19019",
-            "imgsrc":"Songpic\\19019.webp",
             "songname":"hectopascal",
             "artist":"寿美菜子,高田憂希",
             "diff":["-1","-1","-1","26","-1"],
@@ -497,7 +462,6 @@ function getsonglist(){
         },
         {
             "id":"20008",
-            "imgsrc":"Songpic\\20008.webp",
             "songname":"星と君が消えた日",
             "artist":"泠鸢yousa",
             "diff":["-1","-1","-1","24","-1"],
@@ -511,7 +475,6 @@ function getsonglist(){
         },
         {
             "id":"20166",
-            "imgsrc":"Songpic\\20166.webp",
             "songname":"Warp Destination",
             "artist":"Triodust",
             "diff":["-1","-1","-1","30","-1"],
@@ -524,7 +487,6 @@ function getsonglist(){
         },
         {
             "id":"20513",
-            "imgsrc":"Songpic\\20513.webp",
             "songname":"Never Let You Go!",
             "artist":"七穗",
             "diff":["-1","-1","-1","26","-1"],
@@ -534,10 +496,10 @@ function getsonglist(){
             "time":90,
             "bpm":[156,156],
             "note":[-1,-1,-1,569,-1],
+            "video":true
         },
         {
             "id":"20994",
-            "imgsrc":"Songpic\\20994.webp",
             "songname":"璃月",
             "artist":"HOYO-MIX",
             "diff":["-1","12","-1","24","-1"],
@@ -551,7 +513,6 @@ function getsonglist(){
         },
         {
             "id":"21447",
-            "imgsrc":"Songpic\\21447.webp",
             "songname":"んなわけないけど",
             "artist":"ナナヲアカリ,DECO＊27",
             "diff":["-1","-1","-1","29","-1"],
@@ -565,7 +526,6 @@ function getsonglist(){
         },
         {
             "id":"21755",
-            "imgsrc":"Songpic\\21755.webp",
             "songname":"未来少女たち (Version 3)",
             "artist":"宇佐美奈々子,小日向縁,三ヶ月ゆい,名都借みらい",
             "diff":["-1","-1","-1","25","-1"],
@@ -578,7 +538,6 @@ function getsonglist(){
         },
         {
             "id":"21925",
-            //"imgsrc":"Songpic\\21925.webp",
             "songname":"シャボン -キャロver.-",
             "artist":"進藤 あまね",
             "diff":["-1","-1","-1","25","-1"],
@@ -588,10 +547,10 @@ function getsonglist(){
             "time":90,
             "bpm":[168,168],
             "note":[-1,-1,-1,530,-1],
+            "video":true
         },
         {
             "id":"22461",
-            "imgsrc":"Songpic\\22461.webp",
             "songname":"崩坏世界的歌姬 (Movie Ver.)",
             "artist":"小林未郁",
             "diff":["-1","-1","-1","25","-1"],
@@ -602,10 +561,10 @@ function getsonglist(){
             "time":77,
             "bpm":[160,160],
             "note":[-1,-1,-1,367,-1],
+            "video":true
         },
         {
             "id":"22550",
-            "imgsrc":"Songpic\\22550.webp",
             "songname":"Wonderland Girl",
             "artist":"Pastel＊Palettes",
             "diff":["-1","-1","-1","26","-1"],
@@ -618,7 +577,6 @@ function getsonglist(){
         },
         {
             "id":"22847",
-            "imgsrc":"Songpic\\22847.webp",
             "songname":"夕焼けといっしょに",
             "artist":"STARTails☆",
             "diff":["-1","-1","-1","25","-1"],
@@ -631,7 +589,6 @@ function getsonglist(){
         },
         {
             "id":"22970",
-            "imgsrc":"Songpic\\22970.webp",
             "songname":"ユメイロコンパス",
             "artist":"高田憂希,山口愛,戸田めぐみ",
             "diff":["-1","-1","-1","23","-1"],
@@ -640,12 +597,10 @@ function getsonglist(){
             "origin":"2017年7月《New Game!!》ED2",
             "time":99,
             "bpm":[130,130],
-            "note":[-1,-1,-1,450,-1],
-            "video":true
+            "note":[-1,-1,-1,450,-1]
         },
         {
             "id":"23385",
-            "imgsrc":"Songpic\\23385.webp",
             "songname":"なんとなくミライ",
             "artist":"Petit Rabbit's",
             "diff":["-1","-1","-1","24","-1"],
@@ -659,7 +614,6 @@ function getsonglist(){
         },
         {
             "id":"23614",
-            "imgsrc":"Songpic\\23614.webp",
             "songname":"和你约定",
             "artist":"德丽莎·阿波卡利斯（CV: 花玲）",
             "diff":["-1","-1","-1","25","-1"],
@@ -674,7 +628,6 @@ function getsonglist(){
         },
         {
             "id":"23655",
-            "imgsrc":"Songpic\\23655.webp",
             "songname":"我的天命",
             "artist":"多多poi,宴宁",
             "diff":["-1","-1","-1","26","-1"],
@@ -685,6 +638,18 @@ function getsonglist(){
             "time":71,
             "bpm":[150,150],
             "note":[-1,-1,-1,474,-1],
+        },
+        {
+            "id":"24182",
+            "songname":"Winter",
+            "artist":"3R2",
+            "diff":["-1","-1","-1","25","-1"],
+            "maxdiff":25,
+            "tags":["Other","-","单曲",],
+            "origin":"3R2单曲",
+            "time":164,
+            "bpm":[135,135],
+            "note":[-1,-1,-1,909,-1],
         }
     ]
 }
