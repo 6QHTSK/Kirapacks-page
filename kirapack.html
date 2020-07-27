@@ -37,23 +37,6 @@
         </el-menu>
       </el-header>
       <el-main>
-        <!--el-tabs tab-position='left' v-model="activename">
-          <el-tab-pane label="主页" name="A">
-            <div v-if="activename=='A'">
-              <indexpage></indexpage>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="Kirapacks 合集" name="B">
-            <div v-if="activename=='B'">
-              <kirapack :songlist="songlist"></kirapack>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="谱面分析" name="C">
-            <div v-if="activename=='B'">
-              <diffanalysis></diffanalysis>
-            </div>
-          </el-tab-pane>
-        </el-tabs-->
         <kirapack :songlist="songlist"></kirapack>
       </el-main>
     </el-container>
@@ -77,13 +60,10 @@
     data: function () {
       return {
         songlist: getsonglist(),
-        //activename: "A"
       }
     },
     components: {
       'kirapack': 'url:.\\components\\kirapack\\kirapack.vue',
-      //'indexpage': 'url:.\\components\\index\\index.vue',
-      //'diffanalysis': 'url:.\\components\\diffanalysis\\diffanalysis.vue'
     },
     template: ``,
     methods: {
@@ -107,7 +87,13 @@
           window.open("./bestdoriany.html","_self");
         }
       }
-    }
+    },
+    mounted(){
+        var sUserAgent = navigator.userAgent;
+        if (sUserAgent.indexOf('Android') > -1 || sUserAgent.indexOf('iPhone') > -1 || sUserAgent.indexOf('iPad') > -1 || sUserAgent.indexOf('iPod') > -1 || sUserAgent.indexOf('Symbian') > -1) {
+            location.href = 'http://coppercomplex.gitee.io/mobile/kirapack.html';
+        }
+      }
   });
 </script>
 <style>
