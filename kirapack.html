@@ -10,7 +10,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
   <!-- import vue javascript-->
-  <script src="songlist.js"></script>
   <script src="diffanalysis.js"></script>
   <meta charset="UTF-8">
   <!-- import CSS -->
@@ -36,8 +35,8 @@
           <el-menu-item index="5">Bestdori 分析</el-menu-item>
         </el-menu>
       </el-header>
-      <el-main>
-        <kirapack :songlist="songlist"></kirapack>
+      <el-main v-loading="!view">
+        <kirapack v-if="view":songlist="songlist"></kirapack>
       </el-main>
     </el-container>
   </div>
@@ -59,7 +58,8 @@
     el: '#app',
     data: function () {
       return {
-        songlist: getsonglist(),
+        songlist: [],
+        view: false
       }
     },
     components: {
@@ -86,6 +86,19 @@
         if (key == 5){
           window.open("./bestdoriany.html","_self");
         }
+      },
+      getsonglist(){
+        vm = this
+        axios.get('https://testapi.ayachan.fun:11496/songlist').then(function (res) {
+            vm.view = true;
+            if (res.status == 200) {
+                vm.songlist = res.data
+                console.log(res.data)
+            }
+            else {
+                vm.$message("拉取资源失败")
+            }
+        })
       }
     },
     mounted(){
@@ -93,6 +106,7 @@
         if (sUserAgent.indexOf('Android') > -1 || sUserAgent.indexOf('iPhone') > -1 || sUserAgent.indexOf('iPad') > -1 || sUserAgent.indexOf('iPod') > -1 || sUserAgent.indexOf('Symbian') > -1) {
             location.href = 'https://coppercomplex.gitee.io/mobile/kirapack.html';
         }
+        this.getsonglist()
       }
   });
 </script>
