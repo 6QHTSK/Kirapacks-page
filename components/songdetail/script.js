@@ -8,11 +8,11 @@ module.exports = {
     },
     components:{
         'tags' : httpVueLoader('.\\components\\tags\\tags.vue'),
-        'bilibilicard' : httpVueLoader('.\\components\\bilibilicard\\bilibilicard.vue')
+        //'bilibilicard' : httpVueLoader('.\\components\\bilibilicard\\bilibilicard.vue')
     },
     methods: {
         imgsrc(e) {
-            return 'https://assets-1300838857.cos.ap-nanjing.myqcloud.com/pic/' + this.item.id + '.jpg/hd'
+            return 'https://assets-1300838857.file.myqcloud.com/pic/' + this.item.id + '.jpg/hd'
         },
         detailcardtitle(e) {
             return this.item.artist + '-' + this.item.songname
@@ -61,7 +61,7 @@ module.exports = {
         },
         openkirapack(e) {
             this.SeeDetail = false;
-            window.open('https://assets-1300838857.cos.ap-nanjing.myqcloud.com/kirapack/' + this.item.id + '.kirapack', "_blank");
+            window.open('https://assets-1300838857.file.myqcloud.com/kirapack/' + this.item.id + '.kirapack', "_blank");
         },
         audiosrc(e){
             return ".\\song\\"+this.item.id+".mp3"

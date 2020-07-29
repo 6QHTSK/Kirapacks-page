@@ -15,7 +15,7 @@ module.exports = {
         pullbdchart() {
             this.onloading = true
             vm = this
-            url = "https://bird.ioliu.cn/v1?url=http://106.55.249.77/bdofftobdfan?id=" + this.bestdoriid + "&diff=" + this.diff;
+            url = "https://testapi.ayachan.fun:11496/bdofftobdfan?id=" + this.bestdoriid + "&diff=" + this.diff;
             axios.get(url).then(function (res) {
                 vm.onloading = false;
                 if (res.status == 200) {

@@ -164,7 +164,7 @@ module.exports = {
         pullbdchart() {
             this.onloading = true
             vm = this
-            url = "https://bird.ioliu.cn/v1?url=http://106.55.249.77:7091/calcdata";
+            url = "https://testapi.ayachan.fun:11496/calcdata";
             axios.get(url).then(function (res) {
                 vm.onloading = false;
                 if (res.status == 200) {
@@ -205,7 +205,7 @@ module.exports = {
         search(username){
             this.searchload = true
             vm = this
-            url = "https://bird.ioliu.cn/v1?url=http://106.55.249.77:7091/calcauthor?author=" + username
+            url = "https://testapi.ayachan.fun:11496/calcauthor?author=" + username
             axios.get(url).then(function (res) {
                 vm.searchload = false
                 if (res.status == 200) {
