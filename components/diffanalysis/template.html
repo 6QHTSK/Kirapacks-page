@@ -39,7 +39,7 @@
     </div>
     <div v-show="showdetail">
         <el-divider>
-            <span style="font-size: x-large;">谱面分析</span>
+            <span style="font-size: x-large;">谱面分析（仅供参考）</span>
         </el-divider>
         <el-row :gutter="20">
             <el-col :span="6">
@@ -267,6 +267,33 @@
                             <div style="vertical-align: middle;text-align: center;font-size: x-large">
                                 <span style="font-size: small;">LV</span>
                                 <span>{{maxfpsbackdiff}}</span>
+                            </div>
+                        </el-col>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xl="12" :lg="12" :md="24" :sm="24" :xs="24">
+                <div style="padding-bottom: 10px;" v-if="newdiffcalc!=null">
+                    <el-divider>
+                        <span style="font-size: large;">白蓝物量节拍公式 by 金坷垃jin</span>
+                    </el-divider>
+                    <div style="padding-bottom: 30px;">
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span>-</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="14">
+                            <div style="vertical-align: middle;padding-top:10px;">
+                                <el-progress :show-text="false" :percentage="calcpercentage(newdiffcalc)" :color="returncolor"
+                                    :stroke-width="20">
+                                </el-progress>
+                            </div>
+                        </el-col>
+                        <el-col :span="5">
+                            <div style="vertical-align: middle;text-align: center;font-size: x-large">
+                                <span style="font-size: small;">LV</span>
+                                <span>{{newdiffcalc}}</span>
                             </div>
                         </el-col>
                     </div>

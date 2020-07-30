@@ -38,6 +38,7 @@ module.exports = {
             totalnps: null, // nps
             totalhitnote: 0, // Hit数
             totalhps: null,// hps
+            newdiffcalc: null,
             loading: false, // 是否在拉取数据
             viewhelp: false // 是否查看帮助
         }
@@ -68,6 +69,7 @@ module.exports = {
                     vm.npsdiff = rtr.totalnpsdiff.toFixed(1)
                     vm.totalhps = rtr.totalhps.toFixed(2)
                     vm.hpsdiff = rtr.totalhpsdiff.toFixed(1)
+                    vm.newdiffcalc = rtr.newdiffcalc.toFixed(0)
                     if(rtr.fingermaxhps!=null){
                         vm.leftpercent = (rtr.leftpercent * 100).toFixed(1)
                         vm.maxhps = rtr.fingermaxhps.toFixed(2)
