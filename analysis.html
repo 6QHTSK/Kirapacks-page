@@ -2,6 +2,9 @@
 <html>
 
 <head>
+  <script>
+    location.href = 'https://www.ayachan.fun/diff';
+  </script>
   <!-- import Vue before Element -->
   <script src="https://cdn.jsdelivr.net/npm/vue@v2.6.11/dist/vue.js"></script>
   <!-- import JavaScript -->
@@ -14,7 +17,8 @@
   <meta charset="UTF-8">
   <!-- import CSS -->
   <link href="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/theme-chalk/index.css" rel="stylesheet">
-  <title>稳音绫的工具站</title>
+  <title>稳音绫的工具站 - BanGDream自制谱师工具合集</title>
+  
 </head>
 
 <body>
@@ -34,25 +38,13 @@
           </el-menu>
       </el-header>
       <el-main>
-        <!--el-tabs tab-position='left' v-model="activename">
-          <el-tab-pane label="主页" name="A">
-            <div v-if="activename=='A'">
-              <indexpage></indexpage>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="Kirapacks 合集" name="B">
-            <div v-if="activename=='B'">
-              <kirapack :songlist="songlist"></kirapack>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="谱面分析" name="C">
-            <div v-if="activename=='B'">
-              <diffanalysis></diffanalysis>
-            </div>
-          </el-tab-pane>
-        </el-tabs-->
         <diffanalysis></diffanalysis>
       </el-main>
+      <el-footer>
+        <div style="text-align: center">
+          <el-link target="_blank" href="http://www.beian.miit.gov.cn"><span style="font-size: 10px;">桂ICP备20005849号</span></el-link>
+        </div>
+      </el-footer>
     </el-container>
   </div>
 </body>
